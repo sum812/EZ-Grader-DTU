@@ -13,91 +13,59 @@ class TTextTheme {
 
   static TextTheme lightTextTheme = TextTheme(
     displayLarge: _montserratStyle.copyWith(
-      fontSize: 28.0,
-      fontWeight: FontWeight.bold,
     ),
     displayMedium: _montserratStyle.copyWith(
-      fontSize: 24.0,
-      fontWeight: FontWeight.bold,
+      color: Colors.black87,
     ),
     displaySmall: _rotoboStyle.copyWith(
-      fontSize: 20.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineLarge: _rotoboStyle.copyWith(
-      fontSize: 18.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineMedium: _poppinsStyle.copyWith(
-      fontSize: 16.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineSmall: _poppinsStyle.copyWith(
-      fontSize: 14.0,
-      fontWeight: FontWeight.bold,
     ),
     bodyLarge: _dosisStyle.copyWith(
-      fontSize: 16.0,
     ),
     bodyMedium: _dosisStyle.copyWith(
-      fontSize: 14.0,
     ),
     bodySmall: _poppinsStyle.copyWith(
-      fontSize: 12.0,
     ),
     titleLarge: _poppinsStyle.copyWith(
-      fontSize: 16.0,
+      color: Colors.black54,
     ),
     titleMedium: _montserratStyle.copyWith(
-      fontSize: 14.0,
     ),
     titleSmall: _montserratStyle.copyWith(
-      fontSize: 12.0,
     ),
   );
 
   static TextTheme darkTextTheme = TextTheme(
     displayLarge: _montserratStyle.copyWith(
-      fontSize: 28.0,
-      fontWeight: FontWeight.bold,
     ),
     displayMedium: _montserratStyle.copyWith(
-      fontSize: 24.0,
-      fontWeight: FontWeight.bold,
+      color: Colors.white70,
     ),
     displaySmall: _rotoboStyle.copyWith(
-      fontSize: 20.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineLarge: _rotoboStyle.copyWith(
-      fontSize: 18.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineMedium: _poppinsStyle.copyWith(
-      fontSize: 16.0,
-      fontWeight: FontWeight.bold,
     ),
     headlineSmall: _poppinsStyle.copyWith(
-      fontSize: 14.0,
-      fontWeight: FontWeight.bold,
     ),
     bodyLarge: _dosisStyle.copyWith(
-      fontSize: 16.0,
     ),
     bodyMedium: _dosisStyle.copyWith(
-      fontSize: 14.0,
     ),
     bodySmall: _poppinsStyle.copyWith(
-      fontSize: 12.0,
     ),
     titleLarge: _poppinsStyle.copyWith(
-      fontSize: 16.0,
+      color: Colors.white60,
     ),
     titleMedium: _montserratStyle.copyWith(
-      fontSize: 14.0,
     ),
     titleSmall: _montserratStyle.copyWith(
-      fontSize: 12.0,
     ),
   );
 }
