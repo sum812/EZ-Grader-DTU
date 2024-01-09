@@ -1,26 +1,23 @@
 import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/authentication/screens/signup/signup_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/signin/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignInFooterWidget extends StatelessWidget {
-  const SignInFooterWidget({
+class SignUpFooterWidget extends StatelessWidget {
+  const SignUpFooterWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.center,
-      children: [
-        const Text(
-          "OR",
-          style: TextStyle(
-              fontWeight: FontWeight.bold),
-        ),
+      children: [const Text(
+        "OR",
+        style: TextStyle(
+            fontWeight: FontWeight.bold),
+      ),
         const SizedBox(height: tFormHeight),
         SizedBox(
           width: double.infinity,
@@ -40,16 +37,16 @@ class SignInFooterWidget extends StatelessWidget {
         ),
         const SizedBox(height: tFormHeight - 20),
         TextButton(
-          onPressed: () => Get.off(() => const SignUpScreen()),
+          onPressed: () => Get.off(() => const SigninScreen()),
           child: Text.rich(
             TextSpan(
-                text: tDontHaveAnAccount,
+                text: tAlreadyHaveAnAccount,
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall,
                 children: const [
                   TextSpan(
-                      text: tSignUp,
+                      text: tLogin,
                       style: TextStyle(
                           color: Colors.blue))
                 ]),

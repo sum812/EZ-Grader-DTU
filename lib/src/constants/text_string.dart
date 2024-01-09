@@ -3,6 +3,7 @@ const String tLogin = "Login";
 const String tSignUp = "Signup";
 const String tEmail = "Email";
 const String tPassword = "Password";
+const String tConfirmPassword = "Confirm Password";
 const String tForgetPassword = "Forgot Password?";
 const String tSignInWithGoogle = "Sign-In with Google";
 const String tFullName = "Full Name";
@@ -36,7 +37,7 @@ const String tDontHaveAnAccount = "Don't have an account? ";
 
 // signup screen string
 const String tSignUpTitle = "Get On Board!";
-const String tSignUpSubTitle = "Time is money – the quiz marking app helps you save both!";
+const String tSignUpSubTitle = "Time is money\nThe quiz making app helps you save both!";
 const String tAlreadyHaveAnAccount = "Already have an account? ";
 
 // forgot password string

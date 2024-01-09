@@ -20,19 +20,17 @@ class SigninForm extends StatelessWidget {
             TextFormField(
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons
-                      .person_outline_outlined),
+                      .person_outline_outlined,),
                   labelText: tEmail,
-                  hintText: tEmail,
-                  border: OutlineInputBorder()),
+                  hintText: tEmail,),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
             TextFormField(
               decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: Icon(Icons.lock_outline,),
                 labelText: tPassword,
                 hintText: tPassword,
-                border: OutlineInputBorder(),
                 suffixIcon: IconButton(
                   onPressed: null,
                   icon: Icon(

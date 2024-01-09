@@ -1,11 +1,15 @@
-import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
-import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:flutter/material.dart';
 
-class SignInHeaderWidget extends StatelessWidget {
-  const SignInHeaderWidget({Key? key})
+class FormHeaderWidget extends StatelessWidget {
+  const FormHeaderWidget(
+      {Key? key,
+      required this.image,
+      required this.title,
+      required this.subTitle})
       : super(key: key);
+
+  final String image, title, subTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +20,20 @@ class SignInHeaderWidget extends StatelessWidget {
           CrossAxisAlignment.start,
       children: [
         Image(
-            image: const AssetImage(
-                tWelcomeScreenImage),
+            image: AssetImage(
+                image),
             height: size.height * 0.25),
         const SizedBox(
           height: tFormHeight - 10,
         ),
-        Text(tLoginTitle,
+        Text(title,
             style: Theme.of(context)
                 .textTheme
                 .displayLarge),
         const SizedBox(
           height: tFormHeight - 20,
         ),
-        Text(tLoginSubTitle,
+        Text(subTitle,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall),

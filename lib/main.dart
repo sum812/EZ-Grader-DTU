@@ -1,5 +1,7 @@
 import 'package:ez_grader/src/features/authentication/screens/signin/signin_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:ez_grader/src/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -19,7 +21,7 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
       // home: SplashScreen(),
-      home: SplashScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
