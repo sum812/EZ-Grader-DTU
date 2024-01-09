@@ -10,6 +10,8 @@ const tCardBgColor = Color(0xFFF7F6F1);
 const tWhiteColor = Color(0xFFFFFFFF);
 const tDarkColor = Color(0xFF000000);
 
+const tSplashContainerColor = Color(0xFFFCFF7A);
+
 // on boarding color
 const tOnBoardingPage1Color = Color(0xFFF0FFC3);
 const tOnBoardingPage2Color = Color(0xFFA9F9FF);

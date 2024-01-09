@@ -13,8 +13,8 @@ const String tAppName = "EZ Grader - DTU";
 const String tAppTag = "Improve Knowledge\nImprove Quality";
 
 // on boarding screen string
-const String tOnBoardingTitle1 = "EZ Grader DTU: Your Smart Grading Solution";
-const String tOnBoardingTitle2 = "Effortless Grade Management with EZ Grader DTU";
+const String tOnBoardingTitle1 = "EZ Grader DTU:\nYour Smart Grading Solution";
+const String tOnBoardingTitle2 = "Effortless Grade Management\nwith EZ Grader DTU";
 const String tOnBoardingTitle3 = "Streamlining Your Grading Process";
 const String tOnBoardingSubTitle1 = "Optimize your time and accuracy in grading your exams";
 const String tOnBoardingSubTitle2 = "The perfect aid for teachers and students facing assessments";
@@ -24,7 +24,7 @@ const String tOnBoardingCounter2 = "2/3";
 const String tOnBoardingCounter3 = "3/3";
 
 // welcome screen string
-const String tSubHeading = "Have a nice day ❤️";
+const String tSubHeading = "Have a great day ❤️";
 const String tHeading = "EZ Grader - DTU";
 
 // login screen string
