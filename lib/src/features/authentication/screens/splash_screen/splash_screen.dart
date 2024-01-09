@@ -1,23 +1,25 @@
+import 'package:ez_grader/src/common_widgets/fade_in_animation/animation_design.dart';
+import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_controller.dart';
+import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_model.dart';
 import 'package:ez_grader/src/constants/colors.dart';
 import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/click_to_exit_controller.dart';
-import 'package:ez_grader/src/features/authentication/controllers/splash_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
 
-  final splashController =
-      Get.put(SplashScreenController());
   final ClickToExit clickToExit = ClickToExit();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    splashController.startAnimation();
+    final controller =
+        Get.put(FadeInAnimationController());
+    controller.startSplashAnimation();
 
     return Scaffold(
         body: SafeArea(
@@ -27,124 +29,91 @@ class SplashScreen extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Obx(
-              () => AnimatedPositioned(
-                  duration: const Duration(
-                      milliseconds: 1500),
-                  top: splashController
-                          .animate.value
-                      ? 0
-                      : -200,
-                  right: splashController
-                          .animate.value
-                      ? 0
-                      : -100,
-                  child: const Image(
-                    image: AssetImage(
-                        tSplashTopRight),
-                  )),
+            TFadeInAnimation(
+              durationInMs: 1500,
+              animate: TAnimatePosition(
+                  topAfter: 0,
+                  topBefore: -200,
+                  rightAfter: 0,
+                  rightBefore: -200),
+              child: const Image(
+                  image: AssetImage(
+                      tSplashTopRight)),
             ),
-            Obx(
-              () => AnimatedPositioned(
-                  duration: const Duration(
-                      milliseconds: 1500),
-                  top: 80,
-                  left: splashController
-                          .animate.value
-                      ? tDefaultSize
-                      : 0,
-                  child: AnimatedOpacity(
-                    duration: const Duration(
-                        milliseconds: 1500),
-                    opacity: splashController
-                            .animate.value
-                        ? 1
-                        : 0,
-                    child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment
-                              .start,
-                      children: [
-                        Text(
-                          tAppName,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge,
-                        ),
-                        Text(
-                          tAppTag,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge,
-                        )
-                      ],
-                    ),
-                  )),
+            TFadeInAnimation(
+              durationInMs: 1500,
+              animate: TAnimatePosition(
+                topAfter: 80,
+                topBefore: 0,
+                leftAfter: tDefaultSize,
+                leftBefore: 0,
+              ),
+              child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    tAppName,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall,
+                  ),
+                  Text(
+                    tAppTag,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium,
+                  )
+                ],
+              ),
             ),
-            Obx(
-              () => AnimatedPositioned(
-                  duration: const Duration(
-                      milliseconds: 1500),
-                  bottom: splashController
-                          .animate.value
-                      ? 200
-                      : 0,
-                  child: AnimatedOpacity(
-                    duration: const Duration(
-                        milliseconds: 1500),
-                    opacity: splashController
-                            .animate.value
-                        ? 1
-                        : 0,
-                    child: Image(
-                      image: const AssetImage(
-                          tSplashScreen),
-                      height: size.height / 2.2,
-                    ),
-                  )),
+            TFadeInAnimation(
+              durationInMs: 1500,
+              animate: TAnimatePosition(
+                  bottomAfter: 200,
+                  bottomBefore: 0),
+              child: Image(
+                image: const AssetImage(
+                    tSplashScreen),
+                height: size.height / 2.2,
+              ),
             ),
-            Obx(
-              () => AnimatedPositioned(
-                  duration: const Duration(
-                      milliseconds: 1500),
-                  bottom: 40,
-                  right: splashController
-                          .animate.value
-                      ? tDefaultSize
-                      : -80,
-                  child: Container(
-                    width: tSplashContainerSize,
-                    height: tSplashContainerSize,
-                    decoration: BoxDecoration(
-                      color:
-                          tSplashContainerColor,
-                      borderRadius:
-                          BorderRadius.circular(
-                              100),
-                    ),
-                  )),
-            ),
-            Obx(
-              () => AnimatedPositioned(
-                  duration: const Duration(
-                      milliseconds: 1500),
-                  bottom: 60,
-                  left: splashController
-                          .animate.value
-                      ? tDefaultSize - 10
-                      : -80,
-                  child: Container(
-                    width: tSplashContainerSize,
-                    height: tSplashContainerSize,
-                    decoration: BoxDecoration(
-                      color:
-                          tSplashContainerColor,
-                      borderRadius:
-                          BorderRadius.circular(
-                              100),
-                    ),
-                  )),
-            ),
+            TFadeInAnimation(
+                durationInMs: 1500,
+                animate: TAnimatePosition(
+                  bottomAfter: 40,
+                  bottomBefore: 0,
+                  rightAfter: tDefaultSize,
+                  rightBefore: -80,
+                ),
+                child: Container(
+                  width: tSplashContainerSize,
+                  height: tSplashContainerSize,
+                  decoration: BoxDecoration(
+                    color: tSplashContainerColor,
+                    borderRadius:
+                        BorderRadius.circular(
+                            100),
+                  ),
+                )),
+            TFadeInAnimation(
+                durationInMs: 1500,
+                animate: TAnimatePosition(
+                  bottomAfter: 60,
+                  bottomBefore: 0,
+                  leftAfter: tDefaultSize - 10,
+                  leftBefore: -80,
+                ),
+                child: Container(
+                  width: tSplashContainerSize,
+                  height: tSplashContainerSize,
+                  decoration: BoxDecoration(
+                    color: tSplashContainerColor,
+                    borderRadius:
+                        BorderRadius.circular(
+                            100),
+                  ),
+                )),
           ],
         ),
       ),
