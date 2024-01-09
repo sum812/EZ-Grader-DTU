@@ -46,14 +46,14 @@ class OnBoardingController extends GetxController {
 
   void skip(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return const WelcomeScreen();
+      return WelcomeScreen();
     }));
   }
 
   animateToNextSlide(BuildContext context) {
     if (currentPage.value == pages.length - 1) {
       Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return const WelcomeScreen();
+        return WelcomeScreen();
       }));
     } else {
       controller.animateToPage(page: controller.currentPage + 1);

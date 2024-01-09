@@ -6,21 +6,27 @@ import '../../../constants/colors.dart';
 class TOutlinedButtonTheme {
   TOutlinedButtonTheme._();
 
-  static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
+  static final lightOutlinedButtonTheme =
+      OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: tLightOutlinedButtonColor,
-      backgroundColor: tLightOutlinedButtonColor,
-      side: const BorderSide(color: tWhiteColor),
-      padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
+      shape: const RoundedRectangleBorder(),
+      foregroundColor: Colors.black,
+      side: const BorderSide(color: Colors.black),
+      backgroundColor: Colors.white,
+      padding: const EdgeInsets.symmetric(
+          vertical: tButtonHeight),
     ),
   );
 
-  static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
+  static final darkOutlinedButtonTheme =
+      OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: tDarkOutlinedButtonColor,
-      backgroundColor: tDarkOutlinedButtonColor,
-      side: const BorderSide(color: tWhiteColor),
-      padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
+      shape: const RoundedRectangleBorder(),
+      foregroundColor: Colors.white,
+      side: const BorderSide(color: Colors.white),
+      backgroundColor: Colors.black,
+      padding: const EdgeInsets.symmetric(
+          vertical: tButtonHeight),
     ),
   );
 }

@@ -11,7 +11,7 @@ const String tOnBoarding2 = "assets/images/on_boarding_images/on_boarding_image2
 const String tOnBoarding3 = "assets/images/on_boarding_images/on_boarding_image3.png";
 
 // welcome
-const String tWelcomeScreenImage = "assets/images/welcome_images/icon_logo.png";
+const String tWelcomeScreenImage = "assets/logo/logo.png";
 
 // forget
 const String tForgetPasswordImage = "assets/images/forget_password/forget_password.png";
@@ -21,4 +21,3 @@ const String tForgetPasswordImage = "assets/images/forget_password/forget_passwo
 
 // Google icon
 const String tGoogleIcon = "assets/icons/google_icon.png";
-const String tLogoIcon = "assets/icons/icon_logo.png";

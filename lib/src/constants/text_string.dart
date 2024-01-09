@@ -1,6 +1,6 @@
 // generic text
-const String tSignIn = "Sign In";
-const String tSignUp = "Sign Up";
+const String tLogin = "Login";
+const String tSignUp = "Signup";
 const String tEmail = "Email";
 const String tPassword = "Password";
 const String tForgetPassword = "Forgot Password?";
@@ -26,6 +26,7 @@ const String tOnBoardingCounter3 = "3/3";
 // welcome screen string
 const String tSubHeading = "Have a great day ❤️";
 const String tHeading = "EZ Grader - DTU";
+const String tWelcomeTag = "welcome-image-tag";
 
 // login screen string
 const String tLoginTitle = "Welcome Back!";

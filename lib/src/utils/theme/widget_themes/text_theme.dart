@@ -66,7 +66,7 @@ class TTextTheme {
       fontSize: 24,
     ),
     headlineLarge: _rotoboStyle.copyWith(
-      color: Colors.grey[900],
+      color: Colors.grey[400],
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
