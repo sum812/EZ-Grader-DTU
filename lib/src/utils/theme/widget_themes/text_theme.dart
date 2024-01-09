@@ -12,28 +12,36 @@ class TTextTheme {
       GoogleFonts.dosis();
 
   static TextTheme lightTextTheme = TextTheme(
-    displayLarge: _montserratStyle.copyWith(
+    displayLarge: const TextStyle(
       color: Colors.red,
       fontWeight: FontWeight.bold,
       fontSize: 42,
     ),
-    displayMedium: _montserratStyle.copyWith(
+    displayMedium: const TextStyle(
       color: Colors.redAccent,
       fontWeight: FontWeight.bold,
-      fontSize: 30,
+      fontSize: 36,
     ),
-    displaySmall: _rotoboStyle.copyWith(
-      color: Colors.black87,
+    displaySmall: _montserratStyle.copyWith(
+      color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontSize: 24,
+      fontSize: 30,
     ),
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
-    headlineMedium: _poppinsStyle.copyWith(),
-    headlineSmall: _poppinsStyle.copyWith(),
+    headlineMedium: _poppinsStyle.copyWith(
+      color: Colors.black87,
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    ),
+    headlineSmall: _poppinsStyle.copyWith(
+      color: Colors.black87,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    ),
     bodyLarge: _dosisStyle.copyWith(),
     bodyMedium: _dosisStyle.copyWith(),
     bodySmall: _poppinsStyle.copyWith(),
@@ -46,32 +54,43 @@ class TTextTheme {
       color: Colors.black54,
       fontSize: 18,
     ),
-    titleSmall: _montserratStyle.copyWith(),
+    titleSmall: const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    displayLarge: _montserratStyle.copyWith(
+    displayLarge: const TextStyle(
       color: Colors.red,
       fontWeight: FontWeight.bold,
       fontSize: 42,
     ),
-    displayMedium: _montserratStyle.copyWith(
-      color: Colors.white70,
+    displayMedium: const TextStyle(
+      color: Colors.red,
+      fontWeight: FontWeight.bold,
+      fontSize: 36,
+    ),
+    displaySmall: _montserratStyle.copyWith(
+      color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 30,
-    ),
-    displaySmall: _rotoboStyle.copyWith(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 24,
     ),
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.grey[400],
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
-    headlineMedium: _poppinsStyle.copyWith(),
-    headlineSmall: _poppinsStyle.copyWith(),
+    headlineMedium: _poppinsStyle.copyWith(
+      color: Colors.grey[400],
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    ),
+    headlineSmall: _poppinsStyle.copyWith(
+      color: Colors.grey[400],
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    ),
     bodyLarge: _dosisStyle.copyWith(),
     bodyMedium: _dosisStyle.copyWith(),
     bodySmall: _poppinsStyle.copyWith(),
@@ -84,6 +103,9 @@ class TTextTheme {
       color: Colors.black54,
       fontSize: 18,
     ),
-    titleSmall: _montserratStyle.copyWith(),
+    titleSmall: const TextStyle(
+      color: Colors.white70,
+      fontSize: 16,
+    ),
   );
 }

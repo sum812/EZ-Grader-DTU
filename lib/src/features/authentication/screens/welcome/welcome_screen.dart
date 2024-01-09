@@ -5,6 +5,8 @@ import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/click_to_exit_controller.dart';
+import 'package:ez_grader/src/features/authentication/screens/signin/signin_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -90,7 +92,7 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () => Get.to(() => const SigninScreen()),
                                 child: Text(
                                   tLogin
                                       .toUpperCase(),
@@ -105,11 +107,11 @@ class WelcomeScreen extends StatelessWidget {
                                 )),
                           ),
                           const SizedBox(
-                            width: tDefaultSize,
+                            width: 10.0,
                           ),
                           Expanded(
                             child: OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () => Get.to(() => const SignUpScreen()),
                                 child: Text(
                                   tSignUp
                                       .toUpperCase(),

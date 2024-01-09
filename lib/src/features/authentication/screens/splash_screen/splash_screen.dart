@@ -56,13 +56,16 @@ class SplashScreen extends StatelessWidget {
                     tAppName,
                     style: Theme.of(context)
                         .textTheme
-                        .displaySmall,
+                        .displayMedium,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
                   ),
                   Text(
                     tAppTag,
                     style: Theme.of(context)
                         .textTheme
-                        .displayMedium,
+                        .displaySmall,
                   )
                 ],
               ),
