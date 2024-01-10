@@ -30,7 +30,7 @@ class TTextTheme {
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
-      fontSize: 30,
+      fontSize: 27,
     ),
     headlineMedium: _poppinsStyle.copyWith(
       color: Colors.black87,
@@ -48,7 +48,11 @@ class TTextTheme {
       fontSize: 42,
     ),
     bodyMedium: _dosisStyle.copyWith(),
-    bodySmall: _poppinsStyle.copyWith(),
+    bodySmall: _poppinsStyle.copyWith(
+      color: Colors.black45,
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+    ),
     titleLarge: _poppinsStyle.copyWith(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
@@ -85,7 +89,7 @@ class TTextTheme {
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.grey[400],
       fontWeight: FontWeight.bold,
-      fontSize: 30,
+      fontSize: 27,
     ),
     headlineMedium: _poppinsStyle.copyWith(
       color: Colors.grey[400],
@@ -97,13 +101,17 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),
-    bodyLarge:const TextStyle(
+    bodyLarge: const TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 42,
     ),
     bodyMedium: _dosisStyle.copyWith(),
-    bodySmall: _poppinsStyle.copyWith(),
+    bodySmall: _poppinsStyle.copyWith(
+      color: Colors.black45,
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+    ),
     titleLarge: _poppinsStyle.copyWith(
       color: Colors.grey[50],
       fontWeight: FontWeight.bold,

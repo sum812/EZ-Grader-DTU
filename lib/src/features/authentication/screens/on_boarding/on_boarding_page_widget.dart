@@ -39,7 +39,7 @@ class OnBoardingPageWidget
                 model.subTitle,
                 style: Theme.of(context)
                     .textTheme
-                    .titleMedium,
+                    .bodySmall,
                 textAlign: TextAlign.center,
               ),
             ],

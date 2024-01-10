@@ -35,7 +35,8 @@ class OnBoardingScreen extends StatelessWidget {
               enableSideReveal: true,
             ),
             Positioned(
-                bottom: tDefaultSize * 2.5,
+                bottom: tDefaultSize,
+                right: tDefaultSize,
                 child: OutlinedButton(
                   onPressed: () => obController
                       .animateToNextSlide(
@@ -70,7 +71,7 @@ class OnBoardingScreen extends StatelessWidget {
                   child: const Text(
                     "Skip",
                     style: TextStyle(
-                        color: Colors.black45,
+                        color: Colors.black,
                         fontSize: 20.0,
                         fontWeight:
                             FontWeight.bold),
@@ -78,7 +79,8 @@ class OnBoardingScreen extends StatelessWidget {
                 )),
             Obx(
                 () => Positioned(
-                  bottom: tDefaultSize / 1.5,
+                  bottom: tDefaultSize * 2,
+                  left: tDefaultSize,
                   child: AnimatedSmoothIndicator(
                     activeIndex: obController
                         .currentPage.value,
