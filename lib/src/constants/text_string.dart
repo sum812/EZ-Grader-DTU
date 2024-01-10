@@ -20,9 +20,6 @@ const String tOnBoardingTitle3 = "Streamlining Your Grading Process";
 const String tOnBoardingSubTitle1 = "Optimize your time and accuracy in grading your exams";
 const String tOnBoardingSubTitle2 = "The perfect aid for teachers and students facing assessments";
 const String tOnBoardingSubTitle3 = "Professional grading with an easy-to-use integrated app";
-const String tOnBoardingCounter1 = "1/3";
-const String tOnBoardingCounter2 = "2/3";
-const String tOnBoardingCounter3 = "3/3";
 
 // welcome screen string
 const String tSubHeading = "Have a great day ❤️";
@@ -43,8 +40,15 @@ const String tAlreadyHaveAnAccount = "Already have an account? ";
 // forgot password string
 const String tForgetPasswordTitle = "Make Selection!";
 const String tForgetPasswordSubTitle = "Select one of the options given below to reset your password!";
-const String tEmailVerification = "Email Verification";
-const String tPhoneNumberVerification = "Phone Number Verification";
-const String tEmailTitle = "Enter Email to receive OTP";
-const String tPhoneTitle = "Enter Phone Number to receive OTP";
+const String tEmailTitle = "Email Verification";
+const String tPhoneNumberTitle = "Phone Number Verification";
+const String tResetViaEmail = "Reset via Email verification";
+const String tResetViaPhone = "Reset via Phone number verification";
+const String tEmailSubTitle = "Enter Email to receive OTP";
+const String tPhoneNumberSubTitle = "Enter Phone Number to receive OTP";
 const String tNext = "Next";
+
+// OTP
+const String tOtpTitle = "CO\nDE";
+const String tOtpSubTitle = "Verification";
+const String tOtpMessage = "Enter the verification code sent at";

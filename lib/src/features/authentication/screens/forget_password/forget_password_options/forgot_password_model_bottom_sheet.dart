@@ -34,7 +34,7 @@ class ForgetPasswordScreen {
                   .titleLarge,
             ),
             const SizedBox(
-              height: tDefaultSize,
+              height: tDefaultSize + 20,
             ),
             ForgetPasswordBtnWidget(
               onTap: () {
@@ -43,7 +43,7 @@ class ForgetPasswordScreen {
               },
               btnIcon: Icons.email_outlined,
               title: tEmail,
-              subTitle: tEmailTitle,
+              subTitle: tResetViaEmail,
             ),
             const SizedBox(
               height: tDefaultSize,
@@ -52,7 +52,7 @@ class ForgetPasswordScreen {
               onTap: () {},
               btnIcon: Icons.phone,
               title: tPhoneNumber,
-              subTitle: tPhoneTitle,
+              subTitle: tResetViaPhone,
             ),
           ],
         ),

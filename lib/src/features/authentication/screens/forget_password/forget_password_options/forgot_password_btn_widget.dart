@@ -31,7 +31,8 @@ class ForgetPasswordBtnWidget
           children: [
             Icon(
               btnIcon,
-              size: 60.0,
+              size: 50.0,
+              color: Theme.of(context).primaryColor,
             ),
             const SizedBox(
               width: 10.0,
@@ -44,7 +45,7 @@ class ForgetPasswordBtnWidget
                   title,
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge,
+                      .bodySmall,
                 ),
                 Text(
                   subTitle,

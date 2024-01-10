@@ -23,9 +23,9 @@ class ForgetPasswordMailScreen
                 ),
                 const FormHeaderWidget(
                   image: tForgetPasswordImage,
-                  title: tForgetPassword,
+                  title: tEmailTitle,
                   subTitle:
-                      tForgetPasswordSubTitle,
+                      tEmailSubTitle,
                   crossAxisAlignment:
                       CrossAxisAlignment.center,
                   imageHeight: 0.2,

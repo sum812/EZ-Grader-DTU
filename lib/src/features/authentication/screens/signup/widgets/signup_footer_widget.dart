@@ -16,7 +16,7 @@ class SignUpFooterWidget extends StatelessWidget {
       children: [const Text(
         "OR",
         style: TextStyle(
-            fontWeight: FontWeight.bold),
+            fontWeight: FontWeight.bold, fontSize: 14),
       ),
         const SizedBox(height: tFormHeight),
         SizedBox(
@@ -43,12 +43,12 @@ class SignUpFooterWidget extends StatelessWidget {
                 text: tAlreadyHaveAnAccount,
                 style: Theme.of(context)
                     .textTheme
-                    .titleSmall,
+                    .labelMedium,
                 children: const [
                   TextSpan(
                       text: tLogin,
                       style: TextStyle(
-                          color: Colors.blue))
+                          color: Colors.blue, fontSize: 14))
                 ]),
           ),
         ),

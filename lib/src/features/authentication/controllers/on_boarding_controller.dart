@@ -19,7 +19,6 @@ class OnBoardingController extends GetxController {
           image: tOnBoarding1,
           title: "$tOnBoardingTitle1\n",
           subTitle: tOnBoardingSubTitle1,
-          counterText: tOnBoardingCounter1,
           bgColor: tOnBoardingPage1Color,
         )),
     OnBoardingPageWidget(
@@ -27,7 +26,6 @@ class OnBoardingController extends GetxController {
           image: tOnBoarding2,
           title: "$tOnBoardingTitle2\n",
           subTitle: tOnBoardingSubTitle2,
-          counterText: tOnBoardingCounter2,
           bgColor: tOnBoardingPage2Color,
         )),
     OnBoardingPageWidget(
@@ -35,7 +33,6 @@ class OnBoardingController extends GetxController {
         image: tOnBoarding3,
         title: "$tOnBoardingTitle3\n",
         subTitle: tOnBoardingSubTitle3,
-        counterText: tOnBoardingCounter3,
         bgColor: tOnBoardingPage3Color,
       ),
     ),

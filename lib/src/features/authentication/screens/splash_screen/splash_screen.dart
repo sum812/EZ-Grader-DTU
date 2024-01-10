@@ -65,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                     tAppTag,
                     style: Theme.of(context)
                         .textTheme
-                        .displaySmall,
+                        .bodyMedium,
                   )
                 ],
               ),

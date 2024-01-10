@@ -8,8 +8,6 @@ class TTextTheme {
       GoogleFonts.roboto();
   static final TextStyle _poppinsStyle =
       GoogleFonts.poppins();
-  static final TextStyle _dosisStyle =
-      GoogleFonts.dosis();
 
   static TextTheme lightTextTheme = TextTheme(
     displayLarge: const TextStyle(
@@ -27,6 +25,16 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
+    labelLarge: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 30),
+    labelMedium: const TextStyle(
+        color: Colors.black, fontSize: 14),
+    labelSmall: const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 27),
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
@@ -47,16 +55,19 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 42,
     ),
-    bodyMedium: _dosisStyle.copyWith(),
+    bodyMedium: const TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontSize: 30,
+    ),
     bodySmall: _poppinsStyle.copyWith(
-      color: Colors.black45,
+      color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 20,
     ),
     titleLarge: _poppinsStyle.copyWith(
       color: Colors.black87,
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
+      fontSize: 17,
     ),
     titleMedium: _montserratStyle.copyWith(
       color: Colors.white,
@@ -82,12 +93,22 @@ class TTextTheme {
       fontSize: 36,
     ),
     displaySmall: const TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
+    labelLarge: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 30),
+    labelMedium:const TextStyle (
+        color: Colors.white, fontSize: 14),
+    labelSmall: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 27),
     headlineLarge: _rotoboStyle.copyWith(
-      color: Colors.grey[400],
+      color: Colors.grey[900],
       fontWeight: FontWeight.bold,
       fontSize: 27,
     ),
@@ -106,16 +127,19 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 42,
     ),
-    bodyMedium: _dosisStyle.copyWith(),
+    bodyMedium: const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 30,
+    ),
     bodySmall: _poppinsStyle.copyWith(
-      color: Colors.black45,
+      color: Colors.black54,
       fontWeight: FontWeight.bold,
       fontSize: 20,
     ),
     titleLarge: _poppinsStyle.copyWith(
       color: Colors.grey[50],
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
+      fontSize: 17,
     ),
     titleMedium: _montserratStyle.copyWith(
       color: Colors.black54,
@@ -123,7 +147,7 @@ class TTextTheme {
       fontSize: 18,
     ),
     titleSmall: const TextStyle(
-      color: Colors.white70,
+      color: Colors.black,
       fontWeight: FontWeight.normal,
       fontSize: 12,
     ),

@@ -44,11 +44,6 @@ class OnBoardingPageWidget
               ),
             ],
           ),
-          Text(model.counterText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge,
-              textAlign: TextAlign.center),
           const SizedBox(
             height: tDefaultSize,
           )
