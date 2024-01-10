@@ -2,7 +2,9 @@ import 'package:ez_grader/src/common_widgets/forms/form_header_widget.dart';
 import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_otp/opt_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ForgetPasswordMailScreen
     extends StatelessWidget {
@@ -53,7 +55,9 @@ class ForgetPasswordMailScreen
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => OTPScreen());
+                            },
                             child: Text(
                               tNext,
                               style: Theme.of(

@@ -113,7 +113,7 @@ class TTextTheme {
       fontSize: 27,
     ),
     headlineMedium: _poppinsStyle.copyWith(
-      color: Colors.grey[400],
+      color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 24,
     ),

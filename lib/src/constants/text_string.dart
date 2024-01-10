@@ -52,3 +52,4 @@ const String tNext = "Next";
 const String tOtpTitle = "CO\nDE";
 const String tOtpSubTitle = "Verification";
 const String tOtpMessage = "Enter the verification code sent at";
+const String tEmailSupport = "sssum812@gmail.com";
