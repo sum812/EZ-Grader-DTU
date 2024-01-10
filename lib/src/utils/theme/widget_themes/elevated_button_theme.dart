@@ -8,7 +8,9 @@ class TElevatedButtonTheme {
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      shape: const RoundedRectangleBorder(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       foregroundColor: Colors.white,
       backgroundColor: Colors.black,
       side: const BorderSide(color: Colors.black),
@@ -21,7 +23,9 @@ class TElevatedButtonTheme {
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      shape: const RoundedRectangleBorder(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       foregroundColor: Colors.black,
       backgroundColor: Colors.white,
       side: const BorderSide(color: Colors.white),

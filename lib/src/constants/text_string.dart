@@ -4,7 +4,7 @@ const String tSignUp = "Signup";
 const String tEmail = "Email";
 const String tPassword = "Password";
 const String tConfirmPassword = "Confirm Password";
-const String tForgetPassword = "Forgot Password?";
+const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign-In with Google";
 const String tFullName = "Full Name";
 const String tPhoneNumber = "Phone Number";
@@ -41,9 +41,10 @@ const String tSignUpSubTitle = "Time is money\nThe quiz making app helps you sav
 const String tAlreadyHaveAnAccount = "Already have an account? ";
 
 // forgot password string
-const String tForgotPasswordTitle = "Make Selection!";
-const String tForgotPasswordSubTitle = "Select one of the options given below!";
+const String tForgetPasswordTitle = "Make Selection!";
+const String tForgetPasswordSubTitle = "Select one of the options given below to reset your password!";
 const String tEmailVerification = "Email Verification";
 const String tPhoneNumberVerification = "Phone Number Verification";
 const String tEmailTitle = "Enter Email to receive OTP";
 const String tPhoneTitle = "Enter Phone Number to receive OTP";
+const String tNext = "Next";

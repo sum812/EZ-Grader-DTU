@@ -1,5 +1,6 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_options/forgot_password_model_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class SigninForm extends StatelessWidget {
@@ -19,16 +20,20 @@ class SigninForm extends StatelessWidget {
           children: [
             TextFormField(
               decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons
-                      .person_outline_outlined,),
-                  labelText: tEmail,
-                  hintText: tEmail,),
+                prefixIcon: Icon(
+                  Icons.person_outline_outlined,
+                ),
+                labelText: tEmail,
+                hintText: tEmail,
+              ),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
             TextFormField(
               decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline,),
+                prefixIcon: Icon(
+                  Icons.lock_outline,
+                ),
                 labelText: tPassword,
                 hintText: tPassword,
                 suffixIcon: IconButton(
@@ -41,7 +46,11 @@ class SigninForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ForgetPasswordScreen
+                        .buildShowModalBottomSheet(
+                            context);
+                  },
                   child: const Text(
                     tForgetPassword,
                     style:

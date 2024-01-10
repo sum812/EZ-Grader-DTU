@@ -22,7 +22,7 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 36,
     ),
-    displaySmall: _montserratStyle.copyWith(
+    displaySmall: const TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 30,
@@ -42,7 +42,11 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),
-    bodyLarge: _dosisStyle.copyWith(),
+    bodyLarge: const TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontSize: 42,
+    ),
     bodyMedium: _dosisStyle.copyWith(),
     bodySmall: _poppinsStyle.copyWith(),
     titleLarge: _poppinsStyle.copyWith(
@@ -51,12 +55,14 @@ class TTextTheme {
       fontSize: 20,
     ),
     titleMedium: _montserratStyle.copyWith(
-      color: Colors.black54,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
       fontSize: 18,
     ),
     titleSmall: const TextStyle(
       color: Colors.black,
-      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontSize: 12,
     ),
   );
 
@@ -71,7 +77,7 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 36,
     ),
-    displaySmall: _montserratStyle.copyWith(
+    displaySmall: const TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 30,
@@ -91,7 +97,11 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),
-    bodyLarge: _dosisStyle.copyWith(),
+    bodyLarge:const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 42,
+    ),
     bodyMedium: _dosisStyle.copyWith(),
     bodySmall: _poppinsStyle.copyWith(),
     titleLarge: _poppinsStyle.copyWith(
@@ -101,11 +111,13 @@ class TTextTheme {
     ),
     titleMedium: _montserratStyle.copyWith(
       color: Colors.black54,
+      fontWeight: FontWeight.bold,
       fontSize: 18,
     ),
     titleSmall: const TextStyle(
       color: Colors.white70,
-      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontSize: 12,
     ),
   );
 }
