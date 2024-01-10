@@ -22,8 +22,8 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
-      home: SplashScreen(),
-      // home: WelcomeScreen(),
+      // home: SplashScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

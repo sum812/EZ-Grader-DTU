@@ -2,6 +2,7 @@ import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_email/forget_password_mail.dart';
 import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_options/forgot_password_btn_widget.dart';
+import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_phone/forget_password_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,7 +50,10 @@ class ForgetPasswordScreen {
               height: tDefaultSize,
             ),
             ForgetPasswordBtnWidget(
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                Get.to(() => const ForgetPasswordPhoneScreen());
+              },
               btnIcon: Icons.phone,
               title: tPhoneNumber,
               subTitle: tResetViaPhone,
