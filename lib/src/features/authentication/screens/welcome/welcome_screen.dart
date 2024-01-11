@@ -17,10 +17,6 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Get.put(FadeInAnimationController());
-    controller.startAnimation();
-
     var mediaQuery = MediaQuery.of(context);
     var height = mediaQuery.size.height;
     var brightness =
@@ -39,19 +35,7 @@ class WelcomeScreen extends StatelessWidget {
           },
           child: Stack(
             children: [
-              TFadeInAnimation(
-                durationInMs: 1000,
-                animate: TAnimatePosition(
-                  topAfter: 0,
-                  topBefore: 0,
-                  bottomAfter: 0,
-                  bottomBefore: 0,
-                  leftAfter: 0,
-                  leftBefore: -100,
-                  rightAfter: 0,
-                  rightBefore: 0,
-                ),
-                child: Container(
+              Container(
                   padding: const EdgeInsets.all(
                       tDefaultSize),
                   child: Column(
@@ -130,7 +114,6 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
             ],
           ),
         )));

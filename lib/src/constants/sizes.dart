@@ -7,3 +7,6 @@ const tFormHeight = 30.0;
 // dash board
 const tHomePadding = 20.0;
 const tHomeCardPadding = 20.0;
+
+// guide
+const tGuidePadding = 15.0;
