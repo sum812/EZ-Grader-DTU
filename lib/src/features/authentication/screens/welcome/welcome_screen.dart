@@ -84,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                             style: Theme.of(
                                     context)
                                 .textTheme
-                                .headlineLarge,
+                                .labelSmall,
                           ),
                         ],
                       ),

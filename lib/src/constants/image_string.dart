@@ -16,7 +16,6 @@ const String tWelcomeScreenImage = "assets/logo/logo.png";
 // forget
 const String tForgetPasswordImage = "assets/images/forget_password/forget_password.png";
 
-
 // ICONS
 
 // Google icon

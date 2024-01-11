@@ -39,16 +39,11 @@ class OnBoardingPageWidget
                 model.subTitle,
                 style: Theme.of(context)
                     .textTheme
-                    .titleMedium,
+                    .bodySmall,
                 textAlign: TextAlign.center,
               ),
             ],
           ),
-          Text(model.counterText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge,
-              textAlign: TextAlign.center),
           const SizedBox(
             height: tDefaultSize,
           )
