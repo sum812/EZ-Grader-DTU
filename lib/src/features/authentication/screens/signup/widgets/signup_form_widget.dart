@@ -1,6 +1,6 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/authentication/controllers/signup_controller.dart';
+import 'package:ez_grader/src/features/authentication/controllers/login_controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
