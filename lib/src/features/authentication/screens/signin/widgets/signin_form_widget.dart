@@ -2,6 +2,9 @@ import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_options/forgot_password_model_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../core/screens/home/home.dart';
 
 class SigninForm extends StatelessWidget {
   const SigninForm({
@@ -62,7 +65,9 @@ class SigninForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => HomeScreen());
+                },
                 child: Text(
                   tLogin.toUpperCase(),
                   style: const TextStyle(
