@@ -24,50 +24,116 @@ class SignUpFormWidget extends StatelessWidget {
               CrossAxisAlignment.start,
           children: [
             TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall,
               controller: controller.fullName,
-              decoration: const InputDecoration(
-                label: Text(tFullName),
-                prefixIcon: Icon(
+              decoration: InputDecoration(
+                label: const Text(tFullName),
+                prefixIcon: const Icon(
                   Icons.person_outline_rounded,
                 ),
                 hintText: tFullName,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Full name is required.';
+                } else if (value.trim().length < 3) {
+                  return 'Full name must have at least 3 characters.';
+                }
+                return null;
+              },
             ),
             const SizedBox(
                 height: tFormHeight - 20),
             TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall,
               controller: controller.email,
-              decoration: const InputDecoration(
-                label: Text(tEmail),
-                prefixIcon: Icon(
+              decoration: InputDecoration(
+                label: const Text(tEmail),
+                prefixIcon: const Icon(
                   Icons.email_outlined,
                 ),
                 hintText: tEmail,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email or phone number.';
+                }
+
+                RegExp emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+
+                if (!emailRegex.hasMatch(value)) {
+                  return 'Invalid email format.';
+                }
+                return null;
+              },
             ),
             const SizedBox(
                 height: tFormHeight - 20),
             TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall,
               controller: controller.phoneNumber,
-              decoration: const InputDecoration(
-                label: Text(tPhoneNumber),
-                prefixIcon: Icon(
+              decoration: InputDecoration(
+                label: const Text(tPhoneNumber),
+                prefixIcon: const Icon(
                   Icons.phone,
                 ),
                 hintText: tPhoneNumber,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your phone number.';
+                }
+
+                RegExp phoneRegex = RegExp(r'^[0-9]+$');
+
+                if (!phoneRegex.hasMatch(value)) {
+                  return 'Invalid phone number format.';
+                }
+                return null;
+              },
             ),
             const SizedBox(
                 height: tFormHeight - 20),
             TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall,
               controller: controller.password,
-              decoration: const InputDecoration(
-                label: Text(tPassword),
-                prefixIcon: Icon(
+              obscureText: true,
+              decoration: InputDecoration(
+                label: const Text(tPassword),
+                prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
                 hintText: tPassword,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Password is required.';
+                }
+
+                RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|<>?]).{6,}$');
+
+                if (!passwordRegex.hasMatch(value)) {
+                  return 'Password must be at least 6 characters.';
+                }
+
+                return null;
+              },
             ),
             const SizedBox(
                 height: tFormHeight - 20),

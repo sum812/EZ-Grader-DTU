@@ -6,8 +6,8 @@ import 'package:ez_grader/src/features/authentication/screens/signin/widgets/sig
 import 'package:ez_grader/src/features/authentication/screens/signin/widgets/signin_form_widget.dart';
 import 'package:flutter/material.dart';
 
-class SigninScreen extends StatelessWidget {
-  const SigninScreen({Key? key})
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({Key? key})
       : super(key: key);
 
   @override

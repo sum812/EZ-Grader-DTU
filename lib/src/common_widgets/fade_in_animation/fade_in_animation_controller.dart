@@ -1,5 +1,6 @@
 import 'package:ez_grader/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
+import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:get/get.dart';
 
 class FadeInAnimationController
@@ -19,11 +20,5 @@ class FadeInAnimationController
     await Future.delayed(
         const Duration(milliseconds: 2000));
     Get.offAll(WelcomeScreen(), transition: Transition.fadeIn);
-  }
-
-  Future startAnimation() async {
-    await Future.delayed(
-        const Duration(milliseconds: 500));
-    animate.value = true;
   }
 }

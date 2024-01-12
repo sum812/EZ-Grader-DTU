@@ -5,7 +5,8 @@ class SignInWithEmailAndPasswordFailure {
 
   factory SignInWithEmailAndPasswordFailure.code(String code) {
     switch(code) {
-      case 'user-not-found': return const SignInWithEmailAndPasswordFailure('No user found for that email.');
+      // sai mã code
+      case 'auth/user-not-found	': return const SignInWithEmailAndPasswordFailure('No user found for that email.');
       case 'wrong-password': return const SignInWithEmailAndPasswordFailure('Wrong password provided for that user.');
       default: return const SignInWithEmailAndPasswordFailure();
     }

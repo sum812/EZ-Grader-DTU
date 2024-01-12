@@ -1,6 +1,3 @@
-import 'package:ez_grader/src/common_widgets/fade_in_animation/animation_design.dart';
-import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_controller.dart';
-import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_model.dart';
 import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
@@ -76,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                                onPressed: () => Get.to(() => const SigninScreen()),
+                                onPressed: () => Get.to(() => const SignInScreen()),
                                 child: Text(
                                   tLogin
                                       .toUpperCase(),

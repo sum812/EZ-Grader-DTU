@@ -5,55 +5,88 @@ import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:ez_grader/src/repository/authentication_repository/exceptions/signin_email_password_failure.dart';
 import 'package:ez_grader/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AuthenticationRepository extends GetxController{
-  static AuthenticationRepository get instance => Get.find();
+class AuthenticationRepository
+    extends GetxController {
+  static AuthenticationRepository get instance =>
+      Get.find();
 
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 6));
-      firebaseUser = Rx<User?>(_auth.currentUser);
-      firebaseUser.bindStream(_auth.userChanges());
-      ever(firebaseUser, _setInitialScreen);
+    firebaseUser = Rx<User?>(_auth.currentUser);
+    firebaseUser.bindStream(_auth.authStateChanges());
+    ever(firebaseUser, _setInitialScreen);
   }
 
   _setInitialScreen(User? user) {
-    user == null ? Get.offAll(() => SplashScreen()) : Get.offAll(() => HomeScreen());
+    print('Uerrrrrrrrrrrrrrr = ${user}');
+    user != null
+        ? Get.offAll(() => HomeScreen())
+        : Get.offAll(() => SplashScreen());
+    print('Uerrrrrrrrrrrrrrr2 = ${user}');
+
   }
 
-  Future<void> createUserWithEmailAndPassword(String email, String password) async {
+  void _showErrorSnackbar(String errorMessage) {
+    Get.snackbar(
+      'Error',
+      errorMessage,
+      snackPosition: SnackPosition.TOP,
+      duration: const Duration(seconds: 4),
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+  }
+
+  Future<void> createUserWithEmailAndPassword(
+      String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value != null ? Get.to(() => const OnBoardingScreen()) : Get.to(() => WelcomeScreen());
-    } on FirebaseAuthException catch(e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      firebaseUser.value != null
+          ? Get.to(() => const OnBoardingScreen())
+          : Get.to(() => WelcomeScreen());
+    } on FirebaseAuthException catch (e) {
+      final ex =
+          SignUpWithEmailAndPasswordFailure.code(
+              e.code);
+      _showErrorSnackbar(ex.message);
       throw ex;
-    } catch(_){
-      const ex = SignUpWithEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
+    } catch (_) {
+      const ex =
+          SignUpWithEmailAndPasswordFailure();
+      _showErrorSnackbar(ex.message);
       throw ex;
     }
   }
 
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
+  Future<void> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value != null ? Get.to(() => HomeScreen()) : Get.to(() => WelcomeScreen());
-    } on FirebaseAuthException catch(e) {
-      final ex = SignInWithEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      firebaseUser.value != null
+          ? Get.to(() => HomeScreen())
+          : Get.to(() => WelcomeScreen());
+    } on FirebaseAuthException catch (e) {
+      final ex =
+          SignInWithEmailAndPasswordFailure.code(
+              e.code);
+      _showErrorSnackbar(ex.message);
       throw ex;
-    } catch(_){
-      const ex = SignInWithEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
+    } catch (_) {
+      const ex =
+          SignInWithEmailAndPasswordFailure();
+      _showErrorSnackbar(ex.message);
       throw ex;
     }
   }
 
-  Future<void> logout() async => await _auth.signOut();
+  Future<void> logout() async =>
+      await _auth.signOut();
 }

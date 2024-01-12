@@ -11,4 +11,11 @@ class SignInController extends GetxController {
   void loginUser (String email, password) {
     AuthenticationRepository.instance.signInWithEmailAndPassword(email, password);
   }
+
+  // Future<void> loginUser() async {
+  //   String? error = await AuthenticationRepository.instance.signInWithEmailAndPassword(email.text.trim(), password.text.trim());
+  //   if(error != null) {
+  //     Get.showSnackbar(GetSnackBar(message: error.toString(),));
+  //   }
+  // }
 }
