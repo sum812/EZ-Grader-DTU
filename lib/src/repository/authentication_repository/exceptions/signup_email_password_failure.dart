@@ -5,6 +5,7 @@ class SignUpWithEmailAndPasswordFailure {
 
   factory SignUpWithEmailAndPasswordFailure.code(String code) {
     switch(code) {
+    // sai mã code
       case 'weak-password': return const SignUpWithEmailAndPasswordFailure('Please enter a stronger password.');
       case 'invalid-email': return const SignUpWithEmailAndPasswordFailure('Email is not valid.');
       case 'email-already-in-use': return const SignUpWithEmailAndPasswordFailure('An account already exists for that email.');

@@ -1,5 +1,4 @@
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

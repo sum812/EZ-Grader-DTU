@@ -6,6 +6,7 @@ import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/click_to_exit_controller.dart';
+import 'package:ez_grader/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,9 +19,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
+
     final controller =
         Get.put(FadeInAnimationController());
-    controller.startWelcome();
+      controller.startWelcome();
 
     return Scaffold(
         body: SafeArea(

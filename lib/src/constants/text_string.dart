@@ -3,6 +3,7 @@
 const String tLogin = "Login";
 const String tSignUp = "Signup";
 const String tEmail = "Email";
+const String tEmailOrPhone = "Email or Phone Number";
 const String tPassword = "Password";
 const String tConfirmPassword =
     "Confirm Password";

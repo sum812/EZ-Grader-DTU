@@ -37,7 +37,7 @@ class SignUpFooterWidget extends StatelessWidget {
         ),
         const SizedBox(height: tFormHeight - 20),
         TextButton(
-          onPressed: () => Get.off(() => const SigninScreen()),
+          onPressed: () => Get.off(() => const SignInScreen()),
           child: Text.rich(
             TextSpan(
                 text: tAlreadyHaveAnAccount,
