@@ -1,5 +1,5 @@
 import 'package:ez_grader/firebase_options.dart';
-import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import 'package:ez_grader/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:ez_grader/src/utils/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
           Transition.rightToLeftWithFade,
       transitionDuration:
           const Duration(milliseconds: 500),
-      home: SplashScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

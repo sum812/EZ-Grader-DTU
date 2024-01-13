@@ -20,9 +20,9 @@ class SplashScreen extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    final controller =
-        Get.put(FadeInAnimationController());
-      controller.startWelcome();
+    final controller = Get.put(FadeInAnimationController());
+
+    controller.startHome();
 
     return Scaffold(
         body: SafeArea(

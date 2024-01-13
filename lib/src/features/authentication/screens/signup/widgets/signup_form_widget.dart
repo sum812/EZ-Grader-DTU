@@ -1,3 +1,4 @@
+import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_controller.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/login_controller/signup_controller.dart';

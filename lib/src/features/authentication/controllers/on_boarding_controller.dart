@@ -1,4 +1,6 @@
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,14 +45,14 @@ class OnBoardingController extends GetxController {
 
   void skip(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return HomeScreen();
+      return WelcomeScreen();
     }));
   }
 
   animateToNextSlide(BuildContext context) {
     if (currentPage.value == pages.length - 1) {
       Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return HomeScreen();
+        return WelcomeScreen();
       }));
     } else {
       controller.animateToPage(page: controller.currentPage + 1);

@@ -1,7 +1,6 @@
 import 'package:ez_grader/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
-import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:ez_grader/src/repository/authentication_repository/exceptions/signin_email_password_failure.dart';
 import 'package:ez_grader/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,12 +23,9 @@ class AuthenticationRepository
   }
 
   _setInitialScreen(User? user) {
-    print('Uerrrrrrrrrrrrrrr = ${user}');
     user != null
-        ? Get.offAll(() => HomeScreen())
-        : Get.offAll(() => SplashScreen());
-    print('Uerrrrrrrrrrrrrrr2 = ${user}');
-
+        ? Get.offAll(() => SplashScreen())
+        : Get.offAll(() => const OnBoardingScreen());
   }
 
   void _showErrorSnackbar(String errorMessage) {
@@ -49,8 +45,8 @@ class AuthenticationRepository
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
-          ? Get.to(() => const OnBoardingScreen())
-          : Get.to(() => WelcomeScreen());
+          ? Get.offAll(() => SplashScreen())
+          : Get.offAll(() => WelcomeScreen());
     } on FirebaseAuthException catch (e) {
       final ex =
           SignUpWithEmailAndPasswordFailure.code(
@@ -71,8 +67,8 @@ class AuthenticationRepository
       await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
-          ? Get.to(() => HomeScreen())
-          : Get.to(() => WelcomeScreen());
+          ? Get.offAll(() => SplashScreen())
+          : Get.offAll(() => WelcomeScreen());
     } on FirebaseAuthException catch (e) {
       final ex =
           SignInWithEmailAndPasswordFailure.code(
