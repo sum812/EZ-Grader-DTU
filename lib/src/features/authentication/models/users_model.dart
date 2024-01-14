@@ -1,4 +1,4 @@
-import 'dart:js_interop';
+import 'package:ez_grader/src/constants/image_string.dart';
 
 class UsersModel {
   final String? user_id;
@@ -12,7 +12,7 @@ class UsersModel {
 
   const UsersModel({
     this.user_id,
-    this.image,
+    this.image = tAvatarImage,
     this.exams_id,
     required this.email,
     required this.phone,
@@ -28,6 +28,7 @@ class UsersModel {
       "first_name": first_name,
       "last_name": last_name,
       "password": password,
+      "image": image,
     };
   }
 }

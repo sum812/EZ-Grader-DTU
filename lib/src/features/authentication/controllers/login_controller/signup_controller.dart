@@ -11,14 +11,25 @@ class SignUpController extends GetxController {
   final phoneNumber = TextEditingController();
   final password = TextEditingController();
 
-  void registerUser (String email, password) {
-    AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
+  String formatPhoneNumber(String phoneNumber) {
+    String numericPhoneNumber = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
+
+    if (numericPhoneNumber.startsWith('0')) {
+      numericPhoneNumber = '+84${numericPhoneNumber.substring(1)}';
+    }
+
+    return numericPhoneNumber;
   }
 
-  // void registerUser(String email, String password) {
-  //   String? error = AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password) as String?;
-  //   if(error != null) {
-  //     Get.showSnackbar(GetSnackBar(message: error.toString(),));
-  //   }
-  // }
+
+  void registerUser (String email, password) {
+    String? error = AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password) as String;
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(message: error.toString()));
+    }
+  }
+
+  void phoneAuthentication(String phoneNumber) {
+    AuthenticationRepository.instance.phoneAuthentication(formatPhoneNumber(phoneNumber));
+  }
 }

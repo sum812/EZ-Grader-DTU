@@ -30,7 +30,8 @@ class App extends StatelessWidget {
           Transition.rightToLeftWithFade,
       transitionDuration:
           const Duration(milliseconds: 500),
-      home: const OnBoardingScreen(),
+      // home: const OnBoardingScreen(),
+      home: const Scaffold(body: Center(child: CircularProgressIndicator(),),)
     );
   }
 }

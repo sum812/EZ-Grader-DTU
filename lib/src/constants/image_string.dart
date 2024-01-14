@@ -43,3 +43,6 @@ const String tForm50Image = "assets/images/form_exam/form50.png";
 const String tForm60Image = "assets/images/form_exam/form60.png";
 const String tForm100Image = "assets/images/form_exam/form100.png";
 const String tForm120Image = "assets/images/form_exam/form120.png";
+
+// avatar
+const String tAvatarImage =  "assets/icons/avatar.jpg";

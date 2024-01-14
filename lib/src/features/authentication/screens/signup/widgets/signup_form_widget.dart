@@ -1,6 +1,8 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/login_controller/signup_controller.dart';
+import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_otp/opt_screen.dart';
+import 'package:ez_grader/src/features/authentication/screens/signup/validators/signup_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +37,7 @@ class SignUpFormWidget extends StatelessWidget {
                         .headlineSmall,
                     controller: controller.firstName,
                     decoration: InputDecoration(
-                      label: const Text(tFirstName),
+                      label: Text(tFirstName, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                       prefixIcon: const Icon(
                         Icons.person_outline_rounded,
                       ),
@@ -43,14 +45,7 @@ class SignUpFormWidget extends StatelessWidget {
                       hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                       errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'First name is required.';
-                      } else if (value.trim().length < 2) {
-                        return 'First name must have at least 2 characters.';
-                      }
-                      return null;
-                    },
+                    validator: (value) => SignUpValidators.validateName(value, tFirstName),
                   ),
                 ),
 
@@ -62,7 +57,7 @@ class SignUpFormWidget extends StatelessWidget {
                         .headlineSmall,
                     controller: controller.lastName,
                     decoration: InputDecoration(
-                      label: const Text(tLastName),
+                      label: Text(tLastName, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                       prefixIcon: const Icon(
                         Icons.person_outline_rounded,
                       ),
@@ -70,14 +65,7 @@ class SignUpFormWidget extends StatelessWidget {
                       hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                       errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Last name is required.';
-                      } else if (value.trim().length < 2) {
-                        return 'Last name must have at least 2 characters.';
-                      }
-                      return null;
-                    },
+                    validator: (value) => SignUpValidators.validateName(value, tLastName),
                   ),
                 ),
               ],
@@ -90,7 +78,7 @@ class SignUpFormWidget extends StatelessWidget {
                   .headlineSmall,
               controller: controller.email,
               decoration: InputDecoration(
-                label: const Text(tEmail),
+                label: Text(tEmail, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                 prefixIcon: const Icon(
                   Icons.email_outlined,
                 ),
@@ -98,18 +86,7 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email or phone number.';
-                }
-
-                RegExp emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-
-                if (!emailRegex.hasMatch(value)) {
-                  return 'Invalid email format.';
-                }
-                return null;
-              },
+              validator: (value) => SignUpValidators.validateEmail(value),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
@@ -119,7 +96,7 @@ class SignUpFormWidget extends StatelessWidget {
                   .headlineSmall,
               controller: controller.phoneNumber,
               decoration: InputDecoration(
-                label: const Text(tPhoneNumber),
+                label: Text(tPhoneNumber, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                 prefixIcon: const Icon(
                   Icons.phone,
                 ),
@@ -127,18 +104,7 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number.';
-                }
-
-                RegExp phoneRegex = RegExp(r'^[0-9]+$');
-
-                if (!phoneRegex.hasMatch(value)) {
-                  return 'Invalid phone number format.';
-                }
-                return null;
-              },
+              validator: (value) => SignUpValidators.validatePhoneNumber(value),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
@@ -149,7 +115,7 @@ class SignUpFormWidget extends StatelessWidget {
               controller: controller.password,
               obscureText: true,
               decoration: InputDecoration(
-                label: const Text(tPassword),
+                label: Text(tPassword, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                 prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
@@ -157,19 +123,7 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required.';
-                }
-
-                RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|<>?]).{6,}$');
-
-                if (!passwordRegex.hasMatch(value)) {
-                  return 'Password must be at least 6 characters.';
-                }
-
-                return null;
-              },
+              validator: (value) => SignUpValidators.validatePassword(value),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
@@ -177,10 +131,9 @@ class SignUpFormWidget extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall,
-              controller: controller.password,
               obscureText: true,
               decoration: InputDecoration(
-                label: const Text(tConfirmPassword),
+                label: Text(tConfirmPassword, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
                 prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
@@ -188,13 +141,7 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value != controller.password.text) {
-                  return 'Passwords do not match.';
-                }
-
-                return null;
-              },
+              validator: (value) => SignUpValidators.validateConfirmPassword(value, controller.password.text),
             ),
             const SizedBox(
                 height: tFormHeight - 20),
@@ -203,7 +150,9 @@ class SignUpFormWidget extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if(_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                    // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                    SignUpController.instance.phoneAuthentication(controller.phoneNumber.text.trim());
+                    Get.to(() => const OTPScreen());
                   }
                 },
                 child: Text(

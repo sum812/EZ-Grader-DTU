@@ -1,7 +1,9 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/authentication/controllers/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -9,6 +11,8 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var otpController = Get.put(OTPController());
+    var otp;
     return Scaffold(
       body: Center(
         child: Container(
@@ -58,14 +62,17 @@ class OTPScreen extends StatelessWidget {
                     .textTheme
                     .headlineMedium,
                 onSubmit: (code) {
-                  print("Verification = " + code);
+                  otp = code;
+                  OTPController.instance.verifyOTP(otp);
                 },
               ),
               const SizedBox(height: tDefaultSize,),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    OTPController.instance.verifyOTP(otp);
+                  },
                   child: Text(
                     tNext,
                     style: Theme.of(context)
