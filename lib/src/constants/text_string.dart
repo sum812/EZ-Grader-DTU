@@ -10,7 +10,8 @@ const String tConfirmPassword =
 const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle =
     "Sign-In with Google";
-const String tFullName = "Full Name";
+const String tFirstName = "First Name";
+const String tLastName = "Last Name";
 const String tPhoneNumber = "Phone Number";
 
 // splash screen string
@@ -168,3 +169,12 @@ const String tGuideTotalDetail =
     "the test and the test will receive 0 (zero) points.\n– Keep the multiple-choice answer "
     "sheet flat, do not fold it, or roll it up.\nI hope you study and review effectively and do "
     "your homework with high results.";
+
+// Form exam
+const String tFormExamAppBar = "Download the form";
+const String tForm20Btn = "Form 20";
+const String tForm40Btn = "Form 40";
+const String tForm50Btn = "Form 50";
+const String tForm60Btn = "Form 60";
+const String tForm100Btn = "Form 100";
+const String tForm120Btn = "Form 120";

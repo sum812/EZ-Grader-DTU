@@ -1,4 +1,3 @@
-import 'package:ez_grader/src/common_widgets/fade_in_animation/fade_in_animation_controller.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/login_controller/signup_controller.dart';
@@ -14,6 +13,7 @@ class SignUpFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     final _formKey = GlobalKey<FormState>();
+    final size = MediaQuery.of(context).size;
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -24,28 +24,63 @@ class SignUpFormWidget extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
-              controller: controller.fullName,
-              decoration: InputDecoration(
-                label: const Text(tFullName),
-                prefixIcon: const Icon(
-                  Icons.person_outline_rounded,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: size.width * 0.4,
+                  child: TextFormField(
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall,
+                    controller: controller.firstName,
+                    decoration: InputDecoration(
+                      label: const Text(tFirstName),
+                      prefixIcon: const Icon(
+                        Icons.person_outline_rounded,
+                      ),
+                      hintText: tFirstName,
+                      hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                      errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'First name is required.';
+                      } else if (value.trim().length < 2) {
+                        return 'First name must have at least 2 characters.';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-                hintText: tFullName,
-                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
-                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
-              ),
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Full name is required.';
-                } else if (value.trim().length < 3) {
-                  return 'Full name must have at least 3 characters.';
-                }
-                return null;
-              },
+
+                SizedBox(
+                  width: size.width * 0.4,
+                  child: TextFormField(
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall,
+                    controller: controller.lastName,
+                    decoration: InputDecoration(
+                      label: const Text(tLastName),
+                      prefixIcon: const Icon(
+                        Icons.person_outline_rounded,
+                      ),
+                      hintText: tLastName,
+                      hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                      errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Last name is required.';
+                      } else if (value.trim().length < 2) {
+                        return 'Last name must have at least 2 characters.';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
                 height: tFormHeight - 20),
@@ -131,6 +166,31 @@ class SignUpFormWidget extends StatelessWidget {
 
                 if (!passwordRegex.hasMatch(value)) {
                   return 'Password must be at least 6 characters.';
+                }
+
+                return null;
+              },
+            ),
+            const SizedBox(
+                height: tFormHeight - 20),
+            TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall,
+              controller: controller.password,
+              obscureText: true,
+              decoration: InputDecoration(
+                label: const Text(tConfirmPassword),
+                prefixIcon: const Icon(
+                  Icons.lock_outline,
+                ),
+                hintText: tConfirmPassword,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+              ),
+              validator: (value) {
+                if (value != controller.password.text) {
+                  return 'Passwords do not match.';
                 }
 
                 return null;

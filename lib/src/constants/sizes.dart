@@ -10,3 +10,6 @@ const tHomeCardPadding = 20.0;
 
 // guide
 const tGuidePadding = 15.0;
+
+// guide
+const tFormExamPadding = 15.0;

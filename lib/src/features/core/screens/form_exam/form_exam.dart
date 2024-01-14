@@ -1,12 +1,75 @@
+import 'package:ez_grader/src/constants/image_string.dart';
+import 'package:ez_grader/src/constants/sizes.dart';
+import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/core/screens/form_exam/widgets/column_form.dart';
+import 'package:ez_grader/src/features/core/screens/form_exam/widgets/row_form.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../constants/link.dart';
 
 class FormExamScreen extends StatelessWidget {
   const FormExamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Form Exam"),
+    final size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red[300],
+        elevation: 10,
+        centerTitle: true,
+        title: Text(
+          tFormExamAppBar,
+          style: Theme.of(context)
+              .textTheme
+              .headlineLarge
+              ?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 20),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(
+              tFormExamPadding),
+          child: Column(
+            children: [
+              RowForm(
+                size: size,
+                image1: tForm20Image,
+                image2: tForm40Image,
+                url1: tForm20,
+                url2: tForm40,
+                buttonText1: tForm20Btn,
+                buttonText2: tForm40Btn,
+              ),
+              const SizedBox(height: tFormExamPadding * 3,),
+              RowForm(
+                size: size,
+                image1: tForm50Image,
+                image2: tForm60Image,
+                url1: tForm50,
+                url2: tForm60,
+                buttonText1: tForm50Btn,
+                buttonText2: tForm60Btn,
+              ),
+              const SizedBox(height: tFormExamPadding * 3,),
+              RowForm(
+                size: size,
+                image1: tForm100Image,
+                image2: tForm120Image,
+                url1: tForm100,
+                url2: tForm120,
+                buttonText1: tForm100Btn,
+                buttonText2: tForm120Btn,
+              ),
+              const SizedBox(height: tFormExamPadding * 3,),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

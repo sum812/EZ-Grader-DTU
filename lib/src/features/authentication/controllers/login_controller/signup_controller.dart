@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
-  final fullName = TextEditingController();
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
   final email = TextEditingController();
   final phoneNumber = TextEditingController();
   final password = TextEditingController();
