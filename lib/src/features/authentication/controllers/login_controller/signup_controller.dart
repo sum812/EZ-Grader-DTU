@@ -1,4 +1,7 @@
+import 'package:ez_grader/src/features/authentication/models/users_model.dart';
+import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_otp/opt_screen.dart';
 import 'package:ez_grader/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:ez_grader/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +14,22 @@ class SignUpController extends GetxController {
   final phoneNumber = TextEditingController();
   final password = TextEditingController();
 
-  String formatPhoneNumber(String phoneNumber) {
+  final userRepo = Get.put(UserRepository());
+
+  var checkRegisterEmail = true;
+  var checkRegisterPhone = true;
+
+  void registerUser(String email, String password) async {
+    try {
+      await AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
+      checkRegisterEmail = false;
+    } catch (e) {
+      checkRegisterEmail = true;
+      print('Error during user registration: $e');
+    }
+  }
+
+  static String formatPhoneNumber(String phoneNumber) {
     String numericPhoneNumber = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
 
     if (numericPhoneNumber.startsWith('0')) {
@@ -21,15 +39,29 @@ class SignUpController extends GetxController {
     return numericPhoneNumber;
   }
 
-
-  void registerUser (String email, password) {
-    String? error = AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password) as String;
-    if (error != null) {
+  Future<void> createUser(UsersModel user) async {
+    try {
+      await userRepo.createUser(user);
+      registerUser(user.email, user.password);
+      phoneAuthentication(user.phone);
+      if (checkRegisterEmail && checkRegisterPhone) {
+        Get.to(() => const OTPScreen());
+      } else {
+        return;
+      }
+    } catch (error) {
       Get.showSnackbar(GetSnackBar(message: error.toString()));
+      print('Error during user creation: $error');
     }
   }
 
   void phoneAuthentication(String phoneNumber) {
-    AuthenticationRepository.instance.phoneAuthentication(formatPhoneNumber(phoneNumber));
+    try {
+      AuthenticationRepository.instance.phoneAuthentication(formatPhoneNumber(phoneNumber));
+      checkRegisterPhone = false;
+    } catch (e) {
+      checkRegisterPhone = true;
+      print('Error during user registration: $e');
+    }
   }
 }

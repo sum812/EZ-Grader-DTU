@@ -1,7 +1,5 @@
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
-import 'package:ez_grader/src/features/core/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
@@ -58,5 +56,4 @@ class OnBoardingController extends GetxController {
       controller.animateToPage(page: controller.currentPage + 1);
     }
   }
-
 }
