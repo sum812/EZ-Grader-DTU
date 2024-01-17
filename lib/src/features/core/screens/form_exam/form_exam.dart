@@ -1,7 +1,7 @@
 import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/core/screens/form_exam/widgets/column_form.dart';
+import 'package:ez_grader/src/features/core/models/appbar.dart';
 import 'package:ez_grader/src/features/core/screens/form_exam/widgets/row_form.dart';
 import 'package:flutter/material.dart';
 
@@ -15,21 +15,7 @@ class FormExamScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red[300],
-        elevation: 10,
-        centerTitle: true,
-        title: Text(
-          tFormExamAppBar,
-          style: Theme.of(context)
-              .textTheme
-              .headlineLarge
-              ?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 20),
-        ),
-      ),
+      appBar: const AppBarWidget(title: tFormExamAppBar),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(

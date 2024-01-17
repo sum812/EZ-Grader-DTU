@@ -6,8 +6,7 @@ import 'package:ez_grader/src/features/authentication/screens/forget_password/fo
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgetPasswordMailScreen
-    extends StatelessWidget {
+class ForgetPasswordMailScreen extends StatelessWidget {
   const ForgetPasswordMailScreen({super.key});
 
   @override
@@ -16,8 +15,7 @@ class ForgetPasswordMailScreen
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(
-                tDefaultSize),
+            padding: const EdgeInsets.all(tDefaultSize),
             child: Column(
               children: [
                 const SizedBox(
@@ -26,10 +24,8 @@ class ForgetPasswordMailScreen
                 const FormHeaderWidget(
                   image: tForgetPasswordImage,
                   title: tEmailTitle,
-                  subTitle:
-                      tEmailSubTitle,
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center,
+                  subTitle: tEmailSubTitle,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   imageHeight: 0.2,
                   heightBetween: tDefaultSize,
                   textAlign: TextAlign.center,
@@ -41,12 +37,10 @@ class ForgetPasswordMailScreen
                     child: Column(
                   children: [
                     TextFormField(
-                      decoration:
-                          const InputDecoration(
+                      decoration: const InputDecoration(
                         label: Text(tEmail),
                         hintText: tEmail,
-                        prefixIcon: Icon(
-                            Icons.email_outlined),
+                        prefixIcon: Icon(Icons.email_outlined),
                       ),
                     ),
                     const SizedBox(
@@ -56,14 +50,11 @@ class ForgetPasswordMailScreen
                         width: double.infinity,
                         child: ElevatedButton(
                             onPressed: () {
-                              Get.to(() => OTPScreen());
+                              Get.to(() => const OTPScreen());
                             },
                             child: Text(
                               tNext,
-                              style: Theme.of(
-                                      context)
-                                  .textTheme
-                                  .titleMedium,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ))),
                   ],
                 ))

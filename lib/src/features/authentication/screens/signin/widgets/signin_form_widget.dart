@@ -13,48 +13,46 @@ class SigninForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Get.put(SignInController());
+    final controller = Get.put(SignInController());
     final _formKey = GlobalKey<FormState>();
 
     return Form(
       key: _formKey,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: tFormHeight),
+        padding: const EdgeInsets.symmetric(vertical: tFormHeight),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               controller: controller.email,
               decoration: InputDecoration(
                 prefixIcon: const Icon(
                   Icons.person_outline_outlined,
                 ),
-                label: Text(tEmail, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
+                label: Text(
+                  tEmail,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 hintText: tEmail,
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
               validator: SignInValidator.validateEmail,
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
             TextFormField(
               controller: controller.password,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               obscureText: true,
               decoration: InputDecoration(
                 prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
-                label: Text(tPassword, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),),
+                label: Text(
+                  tPassword,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 hintText: tPassword,
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
@@ -65,31 +63,20 @@ class SigninForm extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                   onPressed: () {
-                    ForgetPasswordScreen
-                        .buildShowModalBottomSheet(
-                            context);
+                    ForgetPasswordScreen.buildShowModalBottomSheet(context);
                   },
                   child: const Text(
                     tForgetPassword,
-                    style:
-                        TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.blueAccent),
                   )),
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!
-                      .validate()) {
-                    SignInController.instance
-                        .loginUser(
-                            controller.email.text
-                                .trim(),
-                            controller
-                                .password.text
-                                .trim());
+                  if (_formKey.currentState!.validate()) {
+                    SignInController.instance.loginUser(controller.email.text.trim(), controller.password.text.trim());
                   }
                 },
                 child: Text(

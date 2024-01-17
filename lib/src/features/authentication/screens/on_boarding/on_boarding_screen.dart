@@ -26,68 +26,45 @@ class OnBoardingScreen extends StatelessWidget {
           children: [
             LiquidSwipe(
               pages: obController.pages,
-              liquidController:
-                  obController.controller,
-              onPageChangeCallback: obController
-                  .onPageChangedCallback,
-              slideIconWidget: const Icon(
-                  Icons.arrow_back_ios),
+              liquidController: obController.controller,
+              onPageChangeCallback: obController.onPageChangedCallback,
+              slideIconWidget: const Icon(Icons.arrow_back_ios),
               enableSideReveal: true,
             ),
             Positioned(
                 bottom: tDefaultSize,
                 right: tDefaultSize,
                 child: OutlinedButton(
-                  onPressed: () => obController
-                      .animateToNextSlide(
-                          context),
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor:
-                          Colors.white,
-                      side: const BorderSide(
-                          color: Colors.black26),
-                      shape: const CircleBorder(),
-                      padding:
-                          const EdgeInsets.all(
-                              tDefaultSize / 2)),
+                  onPressed: () => obController.animateToNextSlide(context),
+                  style: ElevatedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.black26), shape: const CircleBorder(), padding: const EdgeInsets.all(tDefaultSize / 2)),
                   child: Container(
-                    padding: const EdgeInsets.all(
-                        tDefaultSize / 2),
-                    decoration:
-                        const BoxDecoration(
+                    padding: const EdgeInsets.all(tDefaultSize / 2),
+                    decoration: const BoxDecoration(
                       color: tDarkColor,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                        Icons.arrow_forward_ios),
+                    child: const Icon(Icons.arrow_forward_ios),
                   ),
                 )),
             Positioned(
                 top: tDefaultSize / 2,
                 right: tDefaultSize / 2,
                 child: TextButton(
-                  onPressed: () =>
-                      obController.skip(context),
+                  onPressed: () => obController.skip(context),
                   child: const Text(
                     "Skip",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                        fontWeight:
-                            FontWeight.bold),
+                    style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 )),
             Obx(
-                () => Positioned(
+              () => Positioned(
                   bottom: tDefaultSize * 2,
                   left: tDefaultSize,
                   child: AnimatedSmoothIndicator(
-                    activeIndex: obController
-                        .currentPage.value,
+                    activeIndex: obController.currentPage.value,
                     count: 3,
                     effect: const WormEffect(
-                      activeDotColor:
-                          Colors.blueAccent,
+                      activeDotColor: Colors.blueAccent,
                       dotHeight: 5.0,
                     ),
                   )),

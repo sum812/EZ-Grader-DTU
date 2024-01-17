@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TTextTheme {
-  static final TextStyle _montserratStyle =
-      GoogleFonts.montserrat();
-  static final TextStyle _rotoboStyle =
-      GoogleFonts.roboto();
-  static final TextStyle _poppinsStyle =
-      GoogleFonts.poppins();
+  static final TextStyle _montserratStyle = GoogleFonts.montserrat();
+  static final TextStyle _rotoboStyle = GoogleFonts.roboto();
+  static final TextStyle _poppinsStyle = GoogleFonts.poppins();
 
   static TextTheme lightTextTheme = TextTheme(
     displayLarge: const TextStyle(
@@ -25,16 +22,9 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
-    labelLarge: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 30),
-    labelMedium: const TextStyle(
-        color: Colors.black, fontSize: 14),
-    labelSmall: const TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 27),
+    labelLarge: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+    labelMedium: const TextStyle(color: Colors.black, fontSize: 14),
+    labelSmall: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 27),
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
@@ -97,16 +87,9 @@ class TTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 30,
     ),
-    labelLarge: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 30),
-    labelMedium:const TextStyle (
-        color: Colors.white, fontSize: 14),
-    labelSmall: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 27),
+    labelLarge: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+    labelMedium: const TextStyle(color: Colors.white, fontSize: 14),
+    labelSmall: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 27),
     headlineLarge: _rotoboStyle.copyWith(
       color: Colors.grey[900],
       fontWeight: FontWeight.bold,

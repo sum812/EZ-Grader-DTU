@@ -7,32 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ForgetPasswordScreen {
-  static Future<dynamic>
-      buildShowModalBottomSheet(
-          BuildContext context) {
+  static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(20.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       builder: (context) => Container(
-        padding: const EdgeInsets.all(
-            tDefaultSize + 10),
+        padding: const EdgeInsets.all(tDefaultSize + 10),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               tForgetPasswordTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             Text(
               tForgetPasswordSubTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: tDefaultSize + 20,

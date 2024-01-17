@@ -16,18 +16,18 @@ class OnBoardingController extends GetxController {
   final pages = [
     OnBoardingPageWidget(
         model: OnBoardingModel(
-          image: tOnBoarding1,
-          title: "$tOnBoardingTitle1\n",
-          subTitle: tOnBoardingSubTitle1,
-          bgColor: tOnBoardingPage1Color,
-        )),
+      image: tOnBoarding1,
+      title: "$tOnBoardingTitle1\n",
+      subTitle: tOnBoardingSubTitle1,
+      bgColor: tOnBoardingPage1Color,
+    )),
     OnBoardingPageWidget(
         model: OnBoardingModel(
-          image: tOnBoarding2,
-          title: "$tOnBoardingTitle2\n",
-          subTitle: tOnBoardingSubTitle2,
-          bgColor: tOnBoardingPage2Color,
-        )),
+      image: tOnBoarding2,
+      title: "$tOnBoardingTitle2\n",
+      subTitle: tOnBoardingSubTitle2,
+      bgColor: tOnBoardingPage2Color,
+    )),
     OnBoardingPageWidget(
       model: OnBoardingModel(
         image: tOnBoarding3,
@@ -38,8 +38,7 @@ class OnBoardingController extends GetxController {
     ),
   ];
 
-  onPageChangedCallback(int activePageIndex) =>
-      currentPage.value = activePageIndex;
+  onPageChangedCallback(int activePageIndex) => currentPage.value = activePageIndex;
 
   void skip(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (_) {

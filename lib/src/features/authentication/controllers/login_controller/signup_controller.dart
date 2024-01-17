@@ -5,6 +5,8 @@ import 'package:ez_grader/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../databases/ez_grader_db.dart';
+
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
@@ -22,9 +24,8 @@ class SignUpController extends GetxController {
   void registerUser(String email, String password) async {
     try {
       await AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
-      checkRegisterEmail = false;
     } catch (e) {
-      checkRegisterEmail = true;
+      checkRegisterEmail = false;
       print('Error during user registration: $e');
     }
   }
@@ -41,11 +42,20 @@ class SignUpController extends GetxController {
 
   Future<void> createUser(UsersModel user) async {
     try {
-      await userRepo.createUser(user);
       registerUser(user.email, user.password);
       phoneAuthentication(user.phone);
-      if (checkRegisterEmail && checkRegisterPhone) {
-        Get.to(() => const OTPScreen());
+      if (checkRegisterEmail) {
+        if (checkRegisterPhone) {
+          final ezGradeDB = EZGradeDB();
+          await ezGradeDB.createUser(email: user.email);
+          print('=============================OK=================================');
+          await userRepo.createUser(user);
+          print('=============================OK=================================');
+          Get.to(() => const OTPScreen());
+          print('=============================OK=================================');
+        } else {
+          return;
+        }
       } else {
         return;
       }
@@ -58,9 +68,8 @@ class SignUpController extends GetxController {
   void phoneAuthentication(String phoneNumber) {
     try {
       AuthenticationRepository.instance.phoneAuthentication(formatPhoneNumber(phoneNumber));
-      checkRegisterPhone = false;
     } catch (e) {
-      checkRegisterPhone = true;
+      checkRegisterPhone = false;
       print('Error during user registration: $e');
     }
   }

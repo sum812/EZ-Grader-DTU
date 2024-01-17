@@ -7,8 +7,7 @@ import 'package:ez_grader/src/features/authentication/screens/signin/widgets/sig
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key})
-      : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +15,11 @@ class SignInScreen extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(
-                tDefaultSize),
+            padding: const EdgeInsets.all(tDefaultSize),
             child: const Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FormHeaderWidget(
-                    image: tWelcomeScreenImage,
-                    title: tLoginTitle,
-                    subTitle: tLoginSubTitle),
+                FormHeaderWidget(image: tWelcomeScreenImage, title: tLoginTitle, subTitle: tLoginSubTitle),
                 SigninForm(),
                 SignInFooterWidget(),
               ],

@@ -6,7 +6,6 @@ import 'package:ez_grader/src/constants/image_string.dart';
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/click_to_exit_controller.dart';
-import 'package:ez_grader/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +16,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     final controller = Get.put(FadeInAnimationController());
@@ -34,14 +32,8 @@ class SplashScreen extends StatelessWidget {
           children: [
             TFadeInAnimation(
               durationInMs: 1500,
-              animate: TAnimatePosition(
-                  topAfter: 0,
-                  topBefore: -200,
-                  rightAfter: 0,
-                  rightBefore: -200),
-              child: const Image(
-                  image: AssetImage(
-                      tSplashTopRight)),
+              animate: TAnimatePosition(topAfter: 0, topBefore: -200, rightAfter: 0, rightBefore: -200),
+              child: const Image(image: AssetImage(tSplashTopRight)),
             ),
             TFadeInAnimation(
               durationInMs: 1500,
@@ -52,35 +44,27 @@ class SplashScreen extends StatelessWidget {
                 leftBefore: 0,
               ),
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     tAppName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(
                     height: 10.0,
                   ),
                   Text(
                     tAppTag,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
               ),
             ),
             TFadeInAnimation(
               durationInMs: 1500,
-              animate: TAnimatePosition(
-                  bottomAfter: 200,
-                  bottomBefore: 0),
+              animate: TAnimatePosition(bottomAfter: 200, bottomBefore: 0),
               child: Image(
-                image: const AssetImage(
-                    tSplashScreen),
+                image: const AssetImage(tSplashScreen),
                 height: size.height / 2.2,
               ),
             ),
@@ -97,9 +81,7 @@ class SplashScreen extends StatelessWidget {
                   height: tSplashContainerSize,
                   decoration: BoxDecoration(
                     color: tSplashContainerColor,
-                    borderRadius:
-                        BorderRadius.circular(
-                            100),
+                    borderRadius: BorderRadius.circular(100),
                   ),
                 )),
             TFadeInAnimation(
@@ -115,9 +97,7 @@ class SplashScreen extends StatelessWidget {
                   height: tSplashContainerSize,
                   decoration: BoxDecoration(
                     color: tSplashContainerColor,
-                    borderRadius:
-                        BorderRadius.circular(
-                            100),
+                    borderRadius: BorderRadius.circular(100),
                   ),
                 )),
           ],

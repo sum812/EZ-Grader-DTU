@@ -13,3 +13,13 @@ const tGuidePadding = 15.0;
 
 // guide
 const tFormExamPadding = 15.0;
+
+// settings
+const tSettingPadding = 20.0;
+
+
+// profile
+const tProfilePadding = 40.0;
+
+// update profile
+const tUpdateProfilePadding = 20.0;

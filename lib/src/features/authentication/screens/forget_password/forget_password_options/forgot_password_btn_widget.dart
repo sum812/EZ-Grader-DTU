@@ -1,8 +1,7 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class ForgetPasswordBtnWidget
-    extends StatelessWidget {
+class ForgetPasswordBtnWidget extends StatelessWidget {
   const ForgetPasswordBtnWidget({
     super.key,
     required this.onTap,
@@ -20,11 +19,9 @@ class ForgetPasswordBtnWidget
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(
-            tDefaultSize - 15.0),
+        padding: const EdgeInsets.all(tDefaultSize - 15.0),
         decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0),
           color: Colors.grey.shade300,
         ),
         child: Row(
@@ -38,20 +35,15 @@ class ForgetPasswordBtnWidget
               width: 10.0,
             ),
             Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
                   subTitle,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             )
