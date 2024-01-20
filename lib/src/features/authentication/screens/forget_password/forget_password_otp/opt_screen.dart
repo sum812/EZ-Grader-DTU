@@ -11,7 +11,6 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var otpController = Get.put(OTPController());
     var otp;
     return Scaffold(
       body: Center(

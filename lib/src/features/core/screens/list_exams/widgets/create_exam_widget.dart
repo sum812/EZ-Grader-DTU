@@ -1,10 +1,10 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/features/core/controllers/create_exam_controller.dart';
+import 'package:ez_grader/src/features/core/screens/list_exams/validatiors/create_exam_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../databases/ez_grader_db.dart';
-import '../../../../../models/users.dart';
+import 'package:get/get.dart';
 
 class CreateExamWidget extends StatefulWidget {
   const CreateExamWidget({Key? key}) : super(key: key);
@@ -14,12 +14,11 @@ class CreateExamWidget extends StatefulWidget {
 }
 
 class _CreateExamWidgetState extends State<CreateExamWidget> {
-  final TextEditingController examNameController = TextEditingController();
-  final TextEditingController examScoreController = TextEditingController();
-  final TextEditingController numOfQuestionsController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    final controller = Get.put(CreateExamController());
+
     return AlertDialog(
       title: Text(
         'Create Exam',
@@ -28,28 +27,41 @@ class _CreateExamWidgetState extends State<CreateExamWidget> {
       ),
       contentPadding: const EdgeInsets.all(30),
       content: SingleChildScrollView(
+        child: Form(
+          key: formKey,
           child: Column(
             children: [
-              TextField(
-                controller: examNameController,
+              TextFormField(
+                validator: (value) => CreateExamValidator.validateExamName(value!),
+                controller: controller.examName,
                 decoration: InputDecoration(
-                    label: Text(
-                  tExamName,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                )),
+                  label: Text(
+                    tExamName,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  prefixIcon: const Icon(
+                    Icons.drive_file_rename_outline,
+                  ),
+                  errorStyle: const TextStyle(fontSize: 12.0, color: Colors.red),
+                ),
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(
                 height: tFormHeight,
               ),
-              TextField(
-                controller: examScoreController,
+              TextFormField(
+                validator: (value) => CreateExamValidator.validateExamScore(value!),
+                controller: controller.examScore,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   label: Text(
                     tExamScore,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
+                  prefixIcon: const Icon(
+                    Icons.score,
+                  ),
+                  errorStyle: const TextStyle(fontSize: 12.0, color: Colors.red),
                 ),
                 style: const TextStyle(fontSize: 16),
               ),
@@ -102,19 +114,26 @@ class _CreateExamWidgetState extends State<CreateExamWidget> {
               const SizedBox(
                 height: tFormHeight,
               ),
-              TextField(
-                controller: numOfQuestionsController,
+              TextFormField(
+                validator: (value) => CreateExamValidator.validateNumOfQuestions(value!, selectedForm),
+                controller: controller.examQues,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    label: Text(
-                  tExamQues,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                )),
+                  label: Text(
+                    tExamQues,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  prefixIcon: const Icon(
+                    Icons.numbers,
+                  ),
+                  errorStyle: const TextStyle(fontSize: 12.0, color: Colors.red),
+                ),
                 style: const TextStyle(fontSize: 16),
               ),
             ],
           ),
         ),
+      ),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,26 +149,22 @@ class _CreateExamWidgetState extends State<CreateExamWidget> {
             ),
             ElevatedButton(
               onPressed: () async {
-                String examName = examNameController.text;
-                String examScore = examScoreController.text;
-                String numQuestions = numOfQuestionsController.text;
+                if (formKey.currentState!.validate()) {
+                  final exam_name = controller.examName.text.trim();
+                  final exam_score = controller.examScore.text.trim();
+                  final exam_form = selectedForm;
+                  final exam_type = selectedType;
+                  final exam_ques = controller.examQues.text.trim();
 
-                print('Exam Name: $examName');
-                print('Exam Score: $examScore');
-                print('Selected Form: $selectedForm');
-                print('Selected Type: $selectedType');
-                print('Number of Questions: $numQuestions');
-
-                final _auth = FirebaseAuth.instance;
-                String? email = _auth.currentUser?.email;
-                if (email != null) {
-                  Users currentUser = await EZGradeDB().fetchByEmail(email);
-                  print('current user + ${currentUser.toString()}');
-                } else {
-                  print('khong lay duoc info');
+                  final _auth = FirebaseAuth.instance;
+                  String? email = _auth.currentUser?.email;
+                  if (email != null) {
+                    CreateExamController.instance.createExam(email, exam_name, exam_score, exam_form, exam_type, exam_ques);
+                  } else {
+                    print("Can't get User info");
+                  }
+                  Navigator.of(context).pop();
                 }
-
-                Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15)),
               child: const Text(

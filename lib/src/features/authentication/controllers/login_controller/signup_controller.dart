@@ -5,8 +5,6 @@ import 'package:ez_grader/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../databases/ez_grader_db.dart';
-
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
@@ -26,6 +24,7 @@ class SignUpController extends GetxController {
       await AuthenticationRepository.instance.createUserWithEmailAndPassword(email, password);
     } catch (e) {
       checkRegisterEmail = false;
+      Get.back();
       print('Error during user registration: $e');
     }
   }
@@ -43,19 +42,8 @@ class SignUpController extends GetxController {
   Future<void> createUser(UsersModel user) async {
     try {
       registerUser(user.email, user.password);
-      phoneAuthentication(user.phone);
       if (checkRegisterEmail) {
-        if (checkRegisterPhone) {
-          final ezGradeDB = EZGradeDB();
-          await ezGradeDB.createUser(email: user.email);
-          print('=============================OK=================================');
-          await userRepo.createUser(user);
-          print('=============================OK=================================');
-          Get.to(() => const OTPScreen());
-          print('=============================OK=================================');
-        } else {
-          return;
-        }
+        await userRepo.createUser(user);
       } else {
         return;
       }

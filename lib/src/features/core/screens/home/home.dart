@@ -1,6 +1,8 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
+import 'package:ez_grader/src/databases/ez_grader_db.dart';
 import 'package:ez_grader/src/features/authentication/controllers/click_to_exit_controller.dart';
+import 'package:ez_grader/src/features/core/controllers/get_current_user.dart';
 import 'package:ez_grader/src/features/core/screens/form_exam/form_exam.dart';
 import 'package:ez_grader/src/features/core/screens/guide/guide.dart';
 import 'package:ez_grader/src/features/core/screens/home/widgets/row_home_widget.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

@@ -10,23 +10,25 @@ class EZGradeDB {
 
   Future<void> createTable(Database database) async {
     await database.execute('''
-    CREATE TABLE $tableUsers (
-      "user_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-      "email" TEXT,
-    );
-  ''');
+      CREATE TABLE $tableUsers (
+        "user_id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "email" TEXT
+      );
+    ''');
 
     await database.execute('''
-    CREATE TABLE $tableExams (
-      "user_id" INTEGER,
-      "exam_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-      "exam_name" TEXT,
-      "exam_score" REAL,
-      "exam_form" TEXT,
-      "exam_type" TEXT,
-      "num_of_questions" INTEGER
-    );
-  ''');
+      CREATE TABLE $tableExams (
+        "user_id" INTEGER,
+        "exam_id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "exam_name" TEXT,
+        "exam_score" REAL,
+        "exam_form" INTEGER,
+        "exam_type" INTEGER,
+        "num_of_questions" INTEGER,
+        "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY ("user_id") REFERENCES $tableUsers ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION
+      );
+    ''');
   }
 
   Future<int> createUser({required String email}) async {
@@ -40,8 +42,8 @@ class EZGradeDB {
     final database = await DatabaseService().database;
     return await database.rawInsert('''
       INSERT INTO $tableExams (user_id, 
-      exam_name, score, exam_form, exam_type, 
-      exam_ques) 
+      exam_name, exam_score, exam_form, exam_type, 
+      num_of_questions) 
       VALUES (?, ?, ?, ?, ?, ?)
     ''', [user_id, exam_name, score, exam_form, exam_type, exam_ques]);
   }
@@ -55,15 +57,29 @@ class EZGradeDB {
     return users.map((user) => Users.fromSqfliteDatabase(user)).toList();
   }
 
-  Future<List<Exams>> fetchAllExams() async {
+  Future<List<Exams>> fetchAllExams({required int user_id}) async {
     final database = await DatabaseService().database;
     final exams = await database.rawQuery(
       '''
-      SELECT * FROM $tableExams 
-    ''',
+      SELECT * FROM $tableExams WHERE user_id = ? ORDER BY created_at DESC
+    ''', [user_id]
     );
 
     return exams.map((exam) => Exams.fromSqfliteDatabase(exam)).toList();
+  }
+
+  Future<bool> isExamNameExists(String examName) async {
+    final database = await DatabaseService().database;
+    final result = await database.rawQuery(
+      '''
+    SELECT EXISTS (
+      SELECT 1 FROM $tableExams WHERE exam_name = ? LIMIT 1
+    ) AS isExists
+    ''',
+      [examName],
+    );
+
+    return Sqflite.firstIntValue(result) == 1;
   }
 
   Future<Users> fetchByUserId(int user_id) async {
@@ -74,6 +90,19 @@ class EZGradeDB {
       ''', [user_id]);
 
     return Users.fromSqfliteDatabase(user.first);
+  }
+
+  Future<Exams?> fetchExamByName(String exam_name) async {
+    final database = await DatabaseService().database;
+    final exam = await database.rawQuery('''
+        SELECT * FROM $tableExams WHERE exam_name
+         = ?
+      ''', [exam_name]);
+    if (exam.isNotEmpty) {
+      return Exams.fromSqfliteDatabase(exam.first);
+    } else {
+      return null;
+    }
   }
 
   Future<Users> fetchByEmail(String email) async {
