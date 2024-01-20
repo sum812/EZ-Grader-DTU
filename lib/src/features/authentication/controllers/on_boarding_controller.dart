@@ -1,5 +1,5 @@
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/core/screens/home/home.dart';
+import 'package:ez_grader/src/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
@@ -16,18 +16,18 @@ class OnBoardingController extends GetxController {
   final pages = [
     OnBoardingPageWidget(
         model: OnBoardingModel(
-          image: tOnBoarding1,
-          title: "$tOnBoardingTitle1\n",
-          subTitle: tOnBoardingSubTitle1,
-          bgColor: tOnBoardingPage1Color,
-        )),
+      image: tOnBoarding1,
+      title: "$tOnBoardingTitle1\n",
+      subTitle: tOnBoardingSubTitle1,
+      bgColor: tOnBoardingPage1Color,
+    )),
     OnBoardingPageWidget(
         model: OnBoardingModel(
-          image: tOnBoarding2,
-          title: "$tOnBoardingTitle2\n",
-          subTitle: tOnBoardingSubTitle2,
-          bgColor: tOnBoardingPage2Color,
-        )),
+      image: tOnBoarding2,
+      title: "$tOnBoardingTitle2\n",
+      subTitle: tOnBoardingSubTitle2,
+      bgColor: tOnBoardingPage2Color,
+    )),
     OnBoardingPageWidget(
       model: OnBoardingModel(
         image: tOnBoarding3,
@@ -38,23 +38,21 @@ class OnBoardingController extends GetxController {
     ),
   ];
 
-  onPageChangedCallback(int activePageIndex) =>
-      currentPage.value = activePageIndex;
+  onPageChangedCallback(int activePageIndex) => currentPage.value = activePageIndex;
 
   void skip(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return HomeScreen();
+      return WelcomeScreen();
     }));
   }
 
   animateToNextSlide(BuildContext context) {
     if (currentPage.value == pages.length - 1) {
       Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return HomeScreen();
+        return WelcomeScreen();
       }));
     } else {
       controller.animateToPage(page: controller.currentPage + 1);
     }
   }
-
 }

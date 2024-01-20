@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class TElevatedButtonTheme {
   TElevatedButtonTheme._();
 
-  static final lightElevatedButtonTheme =
-      ElevatedButtonThemeData(
+  static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -14,13 +13,11 @@ class TElevatedButtonTheme {
       foregroundColor: Colors.white,
       backgroundColor: Colors.black,
       side: const BorderSide(color: Colors.black),
-      padding: const EdgeInsets.symmetric(
-          vertical: tButtonHeight),
+      padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
     ),
   );
 
-  static final darkElevatedButtonTheme =
-      ElevatedButtonThemeData(
+  static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -29,8 +26,7 @@ class TElevatedButtonTheme {
       foregroundColor: Colors.black,
       backgroundColor: Colors.white,
       side: const BorderSide(color: Colors.white),
-      padding: const EdgeInsets.symmetric(
-          vertical: tButtonHeight),
+      padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
     ),
   );
 }

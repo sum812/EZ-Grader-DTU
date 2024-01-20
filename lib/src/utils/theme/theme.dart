@@ -5,7 +5,6 @@ import 'package:ez_grader/src/utils/theme/widget_themes/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class TAppTheme {
-
   TAppTheme._();
 
   static ThemeData lightTheme = ThemeData(

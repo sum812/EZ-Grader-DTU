@@ -10,17 +10,22 @@ class RowHomeWidget extends StatelessWidget {
     required this.subTitle1,
     required this.iconData1,
     required this.onTap1,
-    required this.title2,
-    required this.subTitle2,
-    required this.iconData2,
-    required this.onTap2,
+    this.title2,
+    this.subTitle2,
+    this.iconData2,
+    this.onTap2,
+    this.endWidget = true,
   });
 
   final Size size;
-  final String title1, title2;
-  final String subTitle1, subTitle2;
-  final IconData iconData1, iconData2;
+  final String title1;
+  final String? title2;
+  final String subTitle1;
+  final String? subTitle2;
+  final IconData iconData1;
+  final IconData? iconData2;
   final VoidCallback? onTap1, onTap2;
+  final bool endWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +40,14 @@ class RowHomeWidget extends StatelessWidget {
           subTitle1,
           onTap: onTap1,
         ),
-        HomeWidget(
-          size: size,
-          icon: iconData2,
-          title: title2,
-          subtitle:
-          subTitle2,
-          onTap: onTap2,
-        ),
+        if (endWidget == true && title2 != null && subTitle2 != null && iconData2 != null)
+          HomeWidget(
+            size: size,
+            icon: iconData2!,
+            title: title2!,
+            subtitle: subTitle2!,
+            onTap: onTap2,
+          ),
       ],
     );
   }

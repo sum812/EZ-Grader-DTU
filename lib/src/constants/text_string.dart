@@ -1,16 +1,17 @@
 // generic text
-
 const String tLogin = "Login";
 const String tSignUp = "Signup";
 const String tEmail = "Email";
-const String tEmailOrPhone = "Email or Phone Number";
+const String tEmailOrPhone =
+    "Email or Phone Number";
 const String tPassword = "Password";
 const String tConfirmPassword =
     "Confirm Password";
 const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle =
     "Sign-In with Google";
-const String tFullName = "Full Name";
+const String tFirstName = "First Name";
+const String tLastName = "Last Name";
 const String tPhoneNumber = "Phone Number";
 
 // splash screen string
@@ -79,16 +80,13 @@ const String tEmailSupport = "sssum812@gmail.com";
 
 // Home Screen
 final now = DateTime.now();
-String tHomeTitle = (now.hour >= 6 &&
-        now.hour < 12)
-    ? "Good morning USERNAME"
-    : (now.hour >= 12 && now.hour < 13)
-        ? "Good afternoon USERNAME"
-        : (now.hour >= 13 && now.hour < 18)
-            ? "Good afternoon USERNAME"
-            : (now.hour >= 18 && now.hour < 24)
-                ? "Good evening USERNAME"
-                : "Good evening USERNAME";
+
+String tHomeTitle =
+    (now.hour >= 6 && now.hour < 12)
+        ? "Good morning! ☀️"
+        : (now.hour >= 12 && now.hour < 18)
+            ? "Good afternoon! 🌤️"
+            : "Good evening! 🌙";
 
 const String tHomeWidgetListExam = "List Exams";
 const String tHomeWidgetCreateExam =
@@ -168,3 +166,65 @@ const String tGuideTotalDetail =
     "the test and the test will receive 0 (zero) points.\n– Keep the multiple-choice answer "
     "sheet flat, do not fold it, or roll it up.\nI hope you study and review effectively and do "
     "your homework with high results.";
+
+// Form exam
+const String tFormExamAppBar =
+    "Download the form";
+const String tForm20Btn = "Form 20";
+const String tForm40Btn = "Form 40";
+const String tForm50Btn = "Form 50";
+const String tForm60Btn = "Form 60";
+const String tForm100Btn = "Form 100";
+const String tForm120Btn = "Form 120";
+
+// Profile
+const String tProfileTitle = "Profile";
+const String tProfileHeading = 'USERNAME';
+const String tProfileSubHeading = 'email';
+const String tEditProfile = 'Edit Profile';
+const String tEditSave = 'Save';
+
+// update profile
+const String tDelete = 'Delete';
+
+// settings
+const String tSettingTitle = "Settings";
+
+// create exam
+const String tCreateExamTitle = 'Create Exam';
+const String tExamName = 'Exam name';
+const String tExamForm = 'Select the exam paper form';
+
+const String tForm20Selector = "Form 20";
+const String tForm40Selector = "Form 40";
+const String tForm50Selector = "Form 50";
+const String tForm60Selector = "Form 60";
+const String tForm100Selector = "Form 100";
+const String tForm120Selector = "Form 120";
+
+final List<String> formOptions = [
+    tForm20Selector,
+    tForm40Selector,
+    tForm50Selector,
+    tForm60Selector,
+    tForm100Selector,
+    tForm120Selector,
+];
+String selectedForm = tForm20Selector;
+const String tExamScore = 'Exam Score';
+const String tExamType = 'Exam type';
+const String tExamMul = 'Multiple choice';
+const String tExamMulAndShort = 'Multiple '
+    'choice and short answer';
+
+final List<String> typeOptions = [
+    tExamMul,
+    tExamMulAndShort,
+];
+String selectedType = 'Multiple choice';
+const String tExamQues = 'Question number';
+const String tExamSubmit = 'Add';
+const String tExamCancel = 'Cancel';
+
+// list Exams
+const String tListExamAppBar = 'All Exams';

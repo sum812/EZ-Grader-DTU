@@ -6,8 +6,7 @@ import 'package:ez_grader/src/features/authentication/screens/forget_password/fo
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgetPasswordPhoneScreen
-    extends StatelessWidget {
+class ForgetPasswordPhoneScreen extends StatelessWidget {
   const ForgetPasswordPhoneScreen({super.key});
 
   @override
@@ -16,8 +15,7 @@ class ForgetPasswordPhoneScreen
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(
-                tDefaultSize),
+            padding: const EdgeInsets.all(tDefaultSize),
             child: Column(
               children: [
                 const SizedBox(
@@ -26,10 +24,8 @@ class ForgetPasswordPhoneScreen
                 const FormHeaderWidget(
                   image: tForgetPasswordImage,
                   title: tPhoneNumberTitle,
-                  subTitle:
-                  tPhoneNumberSubTitle,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.center,
+                  subTitle: tPhoneNumberSubTitle,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   imageHeight: 0.2,
                   heightBetween: tDefaultSize,
                   textAlign: TextAlign.center,
@@ -39,34 +35,29 @@ class ForgetPasswordPhoneScreen
                 ),
                 Form(
                     child: Column(
-                      children: [
-                        TextFormField(
-                          decoration:
-                          const InputDecoration(
-                            label: Text(tPhoneNumber),
-                            hintText: tPhoneNumber,
-                            prefixIcon: Icon(
-                                Icons.phone),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: tDefaultSize - 10,
-                        ),
-                        SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  Get.to(() => OTPScreen());
-                                },
-                                child: Text(
-                                  tNext,
-                                  style: Theme.of(
-                                      context)
-                                      .textTheme
-                                      .titleMedium,
-                                ))),
-                      ],
-                    ))
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text(tPhoneNumber),
+                        hintText: tPhoneNumber,
+                        prefixIcon: Icon(Icons.phone),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: tDefaultSize - 10,
+                    ),
+                    SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Get.to(() => OTPScreen());
+                            },
+                            child: Text(
+                              tNext,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ))),
+                  ],
+                ))
               ],
             ),
           ),

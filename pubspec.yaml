@@ -21,6 +21,14 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
+  url_launcher: ^6.2.3
+  sqflite: ^2.3.0
+  intl: ^0.19.0
+  line_awesome_flutter: ^2.0.0
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.0
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:
@@ -43,16 +51,15 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
-    - assets/fonts/
     - assets/icons/
+    - assets/images/form_exam/
     - assets/images/forget_password/
     - assets/images/guide/
     - assets/images/on_boarding_images/
     - assets/images/splash_images/
     - assets/images/welcome_images/
     - assets/logo/
-    - assets/videos/
-  
+
   
   
   

@@ -1,6 +1,8 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/authentication/controllers/login_controller/signup_controller.dart';
+import 'package:ez_grader/src/features/authentication/models/users_model.dart';
+import 'package:ez_grader/src/features/authentication/screens/signup/validators/signup_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,48 +15,69 @@ class SignUpFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     final _formKey = GlobalKey<FormState>();
+    final size = MediaQuery.of(context).size;
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-          vertical: tFormHeight - 10),
+      padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
       child: Form(
         key: _formKey,
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
-              controller: controller.fullName,
-              decoration: InputDecoration(
-                label: const Text(tFullName),
-                prefixIcon: const Icon(
-                  Icons.person_outline_rounded,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: size.width * 0.4,
+                  child: TextFormField(
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    controller: controller.firstName,
+                    decoration: InputDecoration(
+                      label: Text(
+                        tFirstName,
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.person_outline_rounded,
+                      ),
+                      hintText: tFirstName,
+                      hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                      errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+                    ),
+                    validator: (value) => SignUpValidators.validateName(value, tFirstName),
+                  ),
                 ),
-                hintText: tFullName,
-                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
-                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
-              ),
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Full name is required.';
-                } else if (value.trim().length < 3) {
-                  return 'Full name must have at least 3 characters.';
-                }
-                return null;
-              },
+                SizedBox(
+                  width: size.width * 0.4,
+                  child: TextFormField(
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    controller: controller.lastName,
+                    decoration: InputDecoration(
+                      label: Text(
+                        tLastName,
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.person_outline_rounded,
+                      ),
+                      hintText: tLastName,
+                      hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                      errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+                    ),
+                    validator: (value) => SignUpValidators.validateName(value, tLastName),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               controller: controller.email,
               decoration: InputDecoration(
-                label: const Text(tEmail),
+                label: Text(
+                  tEmail,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 prefixIcon: const Icon(
                   Icons.email_outlined,
                 ),
@@ -62,28 +85,17 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email or phone number.';
-                }
-
-                RegExp emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-
-                if (!emailRegex.hasMatch(value)) {
-                  return 'Invalid email format.';
-                }
-                return null;
-              },
+              validator: (value) => SignUpValidators.validateEmail(value),
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               controller: controller.phoneNumber,
               decoration: InputDecoration(
-                label: const Text(tPhoneNumber),
+                label: Text(
+                  tPhoneNumber,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 prefixIcon: const Icon(
                   Icons.phone,
                 ),
@@ -91,29 +103,19 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number.';
-                }
-
-                RegExp phoneRegex = RegExp(r'^[0-9]+$');
-
-                if (!phoneRegex.hasMatch(value)) {
-                  return 'Invalid phone number format.';
-                }
-                return null;
-              },
+              keyboardType: TextInputType.phone,
+              validator: (value) => SignUpValidators.validatePhoneNumber(value),
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               controller: controller.password,
               obscureText: true,
               decoration: InputDecoration(
-                label: const Text(tPassword),
+                label: Text(
+                  tPassword,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
@@ -121,28 +123,34 @@ class SignUpFormWidget extends StatelessWidget {
                 hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
                 errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required.';
-                }
-
-                RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|<>?]).{6,}$');
-
-                if (!passwordRegex.hasMatch(value)) {
-                  return 'Password must be at least 6 characters.';
-                }
-
-                return null;
-              },
+              validator: (value) => SignUpValidators.validatePassword(value),
             ),
-            const SizedBox(
-                height: tFormHeight - 20),
+            const SizedBox(height: tFormHeight - 20),
+            TextFormField(
+              style: Theme.of(context).textTheme.headlineSmall,
+              obscureText: true,
+              decoration: InputDecoration(
+                label: Text(
+                  tConfirmPassword,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                prefixIcon: const Icon(
+                  Icons.lock_outline,
+                ),
+                hintText: tConfirmPassword,
+                hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
+                errorStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
+              ),
+              validator: (value) => SignUpValidators.validateConfirmPassword(value, controller.password.text),
+            ),
+            const SizedBox(height: tFormHeight - 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if(_formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                  if (_formKey.currentState!.validate()) {
+                    final user = UsersModel(email: controller.email.text.trim(), phone: controller.phoneNumber.text.trim(), password: controller.password.text, first_name: controller.firstName.text, last_name: controller.lastName.text);
+                    SignUpController.instance.createUser(user);
                   }
                 },
                 child: Text(

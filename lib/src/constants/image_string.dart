@@ -35,3 +35,14 @@ const String tGuideErrSbdMd8 = "assets/images/guide/guide-10.png";
 const String tGuideErrAns1 = "assets/images/guide/guide-11.png";
 const String tGuideErrAns2 = "assets/images/guide/guide-12.png";
 const String tGuideErrAns3 = "assets/images/guide/guide-13.png";
+
+// form exam
+const String tForm20Image = "assets/images/form_exam/form20.png";
+const String tForm40Image = "assets/images/form_exam/form40.png";
+const String tForm50Image = "assets/images/form_exam/form50.png";
+const String tForm60Image = "assets/images/form_exam/form60.png";
+const String tForm100Image = "assets/images/form_exam/form100.png";
+const String tForm120Image = "assets/images/form_exam/form120.png";
+
+// avatar
+const String tAvatarImage =  "assets/icons/avatar.jpg";

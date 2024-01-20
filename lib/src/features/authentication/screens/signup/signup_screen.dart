@@ -7,8 +7,7 @@ import 'package:ez_grader/src/features/authentication/screens/signup/widgets/sig
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key})
-      : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +15,10 @@ class SignUpScreen extends StatelessWidget {
       child: Scaffold(
           body: SingleChildScrollView(
         child: Container(
-          padding:
-              const EdgeInsets.all(tDefaultSize),
+          padding: const EdgeInsets.all(tDefaultSize),
           child: const Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
-            children: [
-              FormHeaderWidget(
-                  image: tWelcomeScreenImage,
-                  title: tSignUpTitle,
-                  subTitle: tSignUpSubTitle),
-              SignUpFormWidget(),
-              SignUpFooterWidget()
-            ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [FormHeaderWidget(image: tWelcomeScreenImage, title: tSignUpTitle, subTitle: tSignUpSubTitle), SignUpFormWidget(), SignUpFooterWidget()],
           ),
         ),
       )),

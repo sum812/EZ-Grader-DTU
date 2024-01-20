@@ -1,5 +1,4 @@
 import 'package:ez_grader/firebase_options.dart';
-import 'package:ez_grader/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:ez_grader/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:ez_grader/src/utils/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,11 +7,7 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-          options: DefaultFirebaseOptions
-              .currentPlatform)
-      .then((value) =>
-          Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationRepository()));
   runApp(const App());
 }
 
@@ -26,11 +21,11 @@ class App extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      defaultTransition:
-          Transition.rightToLeftWithFade,
-      transitionDuration:
-          const Duration(milliseconds: 500),
-      home: SplashScreen(),
+      defaultTransition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+      home: const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }

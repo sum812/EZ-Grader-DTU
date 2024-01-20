@@ -13,21 +13,17 @@ class SignInFooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text(
           "OR",
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 14.0),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
         ),
         const SizedBox(height: tFormHeight),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            icon: const Image(
-                image: AssetImage(tGoogleIcon),
-                width: 20.0),
+            icon: const Image(image: AssetImage(tGoogleIcon), width: 20.0),
             onPressed: () {},
             label: const Text(
               tSignInWithGoogle,
@@ -42,17 +38,7 @@ class SignInFooterWidget extends StatelessWidget {
         TextButton(
           onPressed: () => Get.off(() => const SignUpScreen()),
           child: Text.rich(
-            TextSpan(
-                text: tDontHaveAnAccount,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium,
-                children: const [
-                  TextSpan(
-                      text: tSignUp,
-                      style: TextStyle(
-                          color: Colors.blue, fontSize: 14))
-                ]),
+            TextSpan(text: tDontHaveAnAccount, style: Theme.of(context).textTheme.labelMedium, children: const [TextSpan(text: tSignUp, style: TextStyle(color: Colors.blue, fontSize: 14))]),
           ),
         ),
       ],

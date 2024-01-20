@@ -2,8 +2,7 @@ import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/features/authentication/models/model_on_boarding.dart';
 import 'package:flutter/material.dart';
 
-class OnBoardingPageWidget
-    extends StatelessWidget {
+class OnBoardingPageWidget extends StatelessWidget {
   const OnBoardingPageWidget({
     super.key,
     required this.model,
@@ -19,8 +18,7 @@ class OnBoardingPageWidget
       padding: const EdgeInsets.all(tDefaultSize),
       color: model.bgColor,
       child: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image(
             image: AssetImage(model.image),
@@ -30,16 +28,12 @@ class OnBoardingPageWidget
             children: [
               Text(
                 model.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall,
+                style: Theme.of(context).textTheme.displaySmall,
                 textAlign: TextAlign.center,
               ),
               Text(
                 model.subTitle,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall,
+                style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.center,
               ),
             ],
