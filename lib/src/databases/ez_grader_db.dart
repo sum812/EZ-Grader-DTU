@@ -20,7 +20,7 @@ class EZGradeDB {
       CREATE TABLE $tableExams (
         "user_id" INTEGER,
         "exam_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-        "exam_name" TEXT,
+        "exam_name" TEXT UNIQUE,
         "exam_score" REAL,
         "exam_form" INTEGER,
         "exam_type" INTEGER,
