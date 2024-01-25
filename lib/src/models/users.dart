@@ -14,6 +14,9 @@ class Users {
 
   @override
   String toString() {
-    return 'Users(user_id: $user_id, email: $email)';
+    return 'Users('
+        '\nuser_id: $user_id,'
+        '\nemail: $email'
+        '\n)';
   }
 }

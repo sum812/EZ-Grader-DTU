@@ -36,8 +36,7 @@ class RowHomeWidget extends StatelessWidget {
           size: size,
           icon: iconData1,
           title: title1,
-          subtitle:
-          subTitle1,
+          subtitle: subTitle1,
           onTap: onTap1,
         ),
         if (endWidget == true && title2 != null && subTitle2 != null && iconData2 != null)

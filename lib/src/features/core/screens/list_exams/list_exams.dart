@@ -1,6 +1,7 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/databases/ez_grader_db.dart';
+import 'package:ez_grader/src/databases/repository/exam_repository.dart';
+import 'package:ez_grader/src/databases/repository/user_repository.dart';
 import 'package:ez_grader/src/features/core/controllers/create_exam_controller.dart';
 import 'package:ez_grader/src/features/core/controllers/get_current_user.dart';
 import 'package:ez_grader/src/features/core/models/appbar.dart';
@@ -21,7 +22,7 @@ class ListExamsScreen extends StatefulWidget {
 
 class _ListExamsScreenState extends State<ListExamsScreen> {
   Future<List<Exams>>? futureExams;
-  final ezGraderDB = EZGradeDB();
+  final examRepo = ExamRepository();
   final createExamController = Get.put(CreateExamController());
 
   @override
@@ -33,11 +34,11 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
   void fetchExams() async {
     final firebaseUser = GetCurrentUser.GetInfo();
     if (firebaseUser != null) {
-      final localUser = await EZGradeDB().fetchByEmail(firebaseUser.email.toString());
+      final localUser = await UsersRepository().fetchByEmail(firebaseUser.email.toString());
       int? user_id = localUser.user_id;
       if (user_id != null) {
         setState(() {
-          futureExams = ezGraderDB.fetchAllExams(user_id: user_id);
+          futureExams = examRepo.fetchAllExams(user_id: user_id);
         });
       } else {}
     }

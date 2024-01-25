@@ -32,7 +32,15 @@ class Exams {
 
   @override
   String toString() {
-    return 'Exam(user_id: $user_id, exam_id: $exam_id, exam_name: $exam_name, '
-        'score: $exam_score, exam_form: $exam_form, exam_type: $exam_type, exam_ques: $exam_ques, created_at: $created_at)';
+    return 'Exam('
+        '\nuser_id: $user_id,'
+        '\nexam_id: $exam_id,'
+        '\nexam_name: $exam_name,'
+        '\nscore: $exam_score,'
+        '\nexam_form: $exam_form,'
+        '\nexam_type: $exam_type,'
+        '\nexam_ques: $exam_ques,'
+        '\ncreated_at: $created_at'
+        '\n)';
   }
 }

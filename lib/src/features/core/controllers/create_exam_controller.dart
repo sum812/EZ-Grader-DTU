@@ -1,4 +1,5 @@
-import 'package:ez_grader/src/databases/ez_grader_db.dart';
+import 'package:ez_grader/src/databases/repository/exam_repository.dart';
+import 'package:ez_grader/src/databases/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,14 +33,14 @@ class CreateExamController extends GetxController {
   }
 
   static Future<bool> isExamNameExists(String examName) async {
-    final exam = await EZGradeDB().fetchExamByName(examName);
+    final exam = await ExamRepository().fetchExamByName(examName);
     return exam != null;
   }
 
   Future<void> createExam(String email, String exam_name, String exam_score, String exam_form, String exam_type, String exam_ques) async {
     try {
-      Users currentUser = await EZGradeDB().fetchByEmail(email);
-      final isExists = await EZGradeDB().isExamNameExists(exam_name);
+      Users currentUser = await UsersRepository().fetchByEmail(email);
+      final isExists = await ExamRepository().isExamNameExists(exam_name);
       if (isExists) {
         Get.snackbar(
           'Error',
@@ -51,7 +52,7 @@ class CreateExamController extends GetxController {
         );
         return;
       }
-      EZGradeDB().createExam(user_id: currentUser.user_id!.toInt(), exam_name: exam_name, score: double.parse(exam_score), exam_form: formatExamForm(exam_form), exam_type: formatExamType(exam_type), exam_ques: int.parse(exam_ques));
+      ExamRepository().createExam(user_id: currentUser.user_id!.toInt(), exam_name: exam_name, score: double.parse(exam_score), exam_form: formatExamForm(exam_form), exam_type: formatExamType(exam_type), exam_ques: int.parse(exam_ques));
     } catch (error) {
       Get.showSnackbar(GetSnackBar(message: error.toString()));
       print('Error during user creation: $error');
@@ -60,7 +61,7 @@ class CreateExamController extends GetxController {
 
   Future<void> deleteExam(String exam_id, BuildContext context) async {
     try {
-      EZGradeDB().deleteExam(int.parse(exam_id));
+      ExamRepository().deleteExam(int.parse(exam_id));
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text(

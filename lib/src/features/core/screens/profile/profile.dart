@@ -50,14 +50,12 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         '${userData.first_name} ${userData.last_name}',
-                        // tProfileHeading,
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontSize: 24,
                             ),
                       ),
                       Text(
                         userData.email,
-                        // tProfileSubHeading,
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 17, fontWeight: FontWeight.normal),
                       ),
                       const SizedBox(
