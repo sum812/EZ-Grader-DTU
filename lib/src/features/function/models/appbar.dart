@@ -6,11 +6,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
     super.key,
     required this.title,
     this.isAction = false,
-    this.leadingIcon = true,
   });
 
   final String title;
-  final bool isAction, leadingIcon;
+  final bool isAction;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
             fontWeight: FontWeight.w700,
             fontSize: 20),
       ),
-      leading: leadingIcon ? IconButton(
+      leading: IconButton(
         icon: const Icon(
           Icons.arrow_back,
           color: Colors.white,
@@ -39,7 +38,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
         onPressed: () {
           Navigator.of(context).pop();
         },
-      ) : null,
+      ),
       actions: isAction ? [
         IconButton(
             onPressed: () {},

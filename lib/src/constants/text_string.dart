@@ -228,3 +228,17 @@ const String tExamCancel = 'Cancel';
 
 // list Exams
 const String tListExamAppBar = 'All Exams';
+
+// function
+const String tMultipleTitle = 'Multiple choice answers';
+const String tShortTitle = 'Short answer answer';
+const String tGradingTitle = 'Grading';
+const String tGradedTitle = 'The test has been graded';
+const String tStatisticalTitle = 'Statistical';
+const String tExportTitle = 'Export';
+
+// add multiple answer
+const String tAddMultipleTitle = 'Make Selection!';
+const String tAddMultipleSubTitle = 'Select one of the options given below to add multiple answer';
+const String tAddManually = 'Add Manually';
+const String tAddFile  = 'Add By File';

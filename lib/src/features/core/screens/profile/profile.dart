@@ -18,10 +18,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoutController =
-    Get.put(LogOutController());
-    final profileController = Get.put(
-        ProfileController());
+    final logoutController = Get.put(LogOutController());
+    final profileController = Get.put(ProfileController());
 
     return Scaffold(
       appBar: const AppBarWidget(
@@ -29,56 +27,36 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(
-              tProfilePadding),
+          padding: const EdgeInsets.all(tProfilePadding),
           child: FutureBuilder(
-            future: profileController
-                .getUserData(),
+            future: profileController.getUserData(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState ==
-                  ConnectionState.done) {
+              if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasData) {
-                  UsersModel userData = snapshot
-                      .data as UsersModel;
+                  UsersModel userData = snapshot.data as UsersModel;
                   return Column(
                     children: [
                       SizedBox(
                         width: 150,
                         height: 150,
                         child: ClipRRect(
-                            borderRadius:
-                            BorderRadius.circular(
-                                100),
-                            child: const Image(image: AssetImage(tAvatarImage),
+                            borderRadius: BorderRadius.circular(100),
+                            child: const Image(
+                              image: AssetImage(tAvatarImage),
                             )),
                       ),
                       const SizedBox(
                         height: tDefaultSize - 10,
                       ),
                       Text(
-                        '${userData
-                            .first_name} ${userData
-                            .last_name}',
-                        // tProfileHeading,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(
-                          fontSize: 24,
-                        ),
+                        '${userData.first_name} ${userData.last_name}',
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontSize: 24,
+                            ),
                       ),
                       Text(
                         userData.email,
-                        // tProfileSubHeading,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(
-                            fontSize: 17,
-                            fontWeight:
-                            FontWeight.normal),
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 17, fontWeight: FontWeight.normal),
                       ),
                       const SizedBox(
                         height: 20,
@@ -86,16 +64,8 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         width: 200,
                         child: ElevatedButton(
-                          onPressed: () =>
-                              Get.to(() =>
-                              const EditProfileScreen()),
-                          style: ElevatedButton
-                              .styleFrom(
-                              padding:
-                              const EdgeInsets
-                                  .all(0),
-                              shape:
-                              const StadiumBorder()),
+                          onPressed: () => Get.to(() => const EditProfileScreen()),
+                          style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(0), shape: const StadiumBorder()),
                           child: const Text(
                             tEditProfile,
                             style: TextStyle(
@@ -113,38 +83,33 @@ class ProfileScreen extends StatelessWidget {
                       ),
 
                       // Menu
-                      ProfileMenuWidget(
-                          title: 'Settings',
-                          icon: LineAwesomeIcons
-                              .cog,
-                          onPress: () =>
-                              Get.to(() =>
-                              const SettingsScreen())),
+                      ProfileMenuWidget(title: 'Settings', icon: LineAwesomeIcons.cog, onPress: () => Get.to(() => const SettingsScreen())),
                       ProfileMenuWidget(
                         title: 'Logout',
-                        icon: LineAwesomeIcons
-                            .alternate_sign_out,
+                        icon: LineAwesomeIcons.alternate_sign_out,
                         textColor: Colors.red,
                         endIcon: false,
                         onPress: () {
-                          logoutController
-                              .showLogoutConfirmationDialog(
-                              context);
+                          logoutController.showLogoutConfirmationDialog(context);
                         },
                       ),
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Center(child: Text(
-                      snapshot.error
-                          .toString()),);
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
                 } else {
-                  return const Center(child: Text(
-                      'Something went wrong!'),);
+                  return const Center(
+                    child: Text('Something went wrong!'),
+                  );
                 }
               } else {
                 return const Center(
-                  child: CircularProgressIndicator(),);
+                  child: CircularProgressIndicator(
+                    color: Colors.red,
+                  ),
+                );
               }
             },
           ),
