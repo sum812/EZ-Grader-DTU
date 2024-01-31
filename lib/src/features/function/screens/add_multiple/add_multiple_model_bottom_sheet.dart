@@ -2,6 +2,7 @@ import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
 import 'package:ez_grader/src/features/function/screens/add_multiple_options/add_by_file.dart';
 import 'package:ez_grader/src/features/function/screens/add_multiple_options/add_manually.dart';
+import 'package:ez_grader/src/features/function/screens/add_multiple_options/view_all_answer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,6 +45,7 @@ mixin AddMultiple {
             AddMultipleBtnWidget(
               onTap: () async {
                 AddByFile.openFile(context, exam);
+                Navigator.pop(context);
               },
               btnIcon: Icons.file_open_outlined,
               title: tAddFile,
@@ -55,7 +57,7 @@ mixin AddMultiple {
             AddMultipleBtnWidget(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(() => const Center(child: CircularProgressIndicator()));
+                Get.to(() => ViewAllAnswer(exam: exam));
               },
               btnIcon: Icons.history_edu,
               title: tAllAnswer,

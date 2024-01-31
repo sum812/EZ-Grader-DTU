@@ -50,14 +50,14 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
       appBar: const AppBarWidget(title: tListExamAppBar),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () async {
+        onPressed: ()  async {
           try {
             await showDialog(
               context: context,
               builder: (_) => const CreateExamWidget(),
             );
+            await Future.delayed(const Duration(milliseconds: 500));
             fetchExams();
-            print('fetch exams called!');
           } catch (error) {
             print('Error when adding a new exam: $error');
           }
@@ -91,7 +91,7 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
                       ),
                     ),
                     onDismissed: (direction) {
-                      createExamController.deleteExam(exam.exam_id.toString(), context);
+                      _showDeleteConfirmationDialog(exam, context);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: tDefaultSize, left: tDefaultSize / 2, right: tDefaultSize / 2),
@@ -102,10 +102,8 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Colors.blue.withOpacity(0.7),
-                              Colors.green.withOpacity(0.7),
-                              Colors.orange.withOpacity(0.5),
-                              Colors.purple.withOpacity(0.5),
+                              Colors.black.withOpacity(0.9),
+                              Colors.grey.withOpacity(0.9),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -155,4 +153,32 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
       ),
     );
   }
+
+  Future<void> _showDeleteConfirmationDialog(Exams exam, BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text('Delete exam "${exam.exam_name}"?', style: const TextStyle(fontSize: 24),),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                fetchExams();
+              },
+              child: const Text('Cancel', style: TextStyle(fontSize: 22),),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                createExamController.deleteExam(exam.exam_id.toString(), context);
+              },
+              child: const Text('Yes', style:  TextStyle(fontSize: 22),),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }

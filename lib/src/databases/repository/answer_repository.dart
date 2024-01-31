@@ -6,11 +6,11 @@ import '../database_service.dart';
 class AnswerRepository {
   final tableAnswer = 'answer';
 
-  Future<List<Answers>> fetchAllAnswer(Answers answer) async {
+  Future<List<Answers>> fetchAllAnswer({required int user_id, required int exam_id}) async {
     final database = await DatabaseService().database;
     final answers = await database.rawQuery('''
       SELECT * FROM $tableAnswer WHERE user_id = ? AND exam_id = ?
-    ''', [answer.user_id, answer.exam_id]);
+    ''', [user_id, exam_id]);
 
     return answers.map((answer) => Answers.fromSqfliteDatabase(answer)).toList();
   }
