@@ -6,6 +6,20 @@ import '../database_service.dart';
 class UsersRepository {
   final tableUsers = 'users';
 
+  Future<bool> isEmailExists(String email) async {
+    final database = await DatabaseService().database;
+    final result = await database.rawQuery(
+      '''
+    SELECT EXISTS (
+      SELECT 1 FROM $tableUsers WHERE email = ? LIMIT 1
+    ) AS isExists
+    ''',
+      [email],
+    );
+
+    return Sqflite.firstIntValue(result) == 1;
+  }
+
   Future<int> createUser({required String email}) async {
     final database = await DatabaseService().database;
     return await database.rawInsert('''

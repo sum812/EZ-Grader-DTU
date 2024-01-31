@@ -30,8 +30,9 @@ class EZGradeDB {
 
     await database.execute('''
       CREATE TABLE $tableAnswer (
-        "user_id" INTEGER PRIMARY KEY,
-        "exam_id" INTEGER PRIMARY KEY,
+        "answer_id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "user_id" INTEGER,
+        "exam_id" INTEGER,
         "exam_type" INTEGER,
         "exam_code" INTEGER,
         "multiple_answer" TEXT,
@@ -45,19 +46,20 @@ class EZGradeDB {
         "short_ans3" TEXT,
         "short_ans4" TEXT,
         "short_ans5" TEXT,
-        FOREIGN KEY ("user_id") REFERENCES $tableExams ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
+        FOREIGN KEY ("user_id") REFERENCES $tableUsers ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
         FOREIGN KEY ("exam_id") REFERENCES $tableExams ("exam_id") ON DELETE CASCADE ON UPDATE NO ACTION
       );
     ''');
 
     await database.execute('''
       CREATE TABLE $tableScore (
-        "user_id" INTEGER PRIMARY KEY,
-        "exam_id" INTEGER PRIMARY KEY,
+        "score_id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "user_id" INTEGER,
+        "exam_id" INTEGER,
         "student_code" TEXT,
         "student_score" REAL,
         "image" TEXT,
-        FOREIGN KEY ("user_id") REFERENCES $tableExams ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
+        FOREIGN KEY ("user_id") REFERENCES $tableUsers ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
         FOREIGN KEY ("exam_id") REFERENCES $tableExams ("exam_id") ON DELETE CASCADE ON UPDATE NO ACTION            
       );
     ''');

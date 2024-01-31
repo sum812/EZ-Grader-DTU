@@ -7,8 +7,11 @@ import 'package:ez_grader/src/features/core/screens/guide/guide.dart';
 import 'package:ez_grader/src/features/core/screens/home/widgets/row_home_widget.dart';
 import 'package:ez_grader/src/features/core/screens/list_exams/list_exams.dart';
 import 'package:ez_grader/src/features/core/screens/profile/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../databases/repository/user_repository.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -18,6 +21,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    Future<void> checkAndCreateUser() async {
+      final _auth = FirebaseAuth.instance;
+      String? userEmail = _auth.currentUser?.email;
+
+      bool emailExists = await UsersRepository().isEmailExists(userEmail!);
+
+      if (!emailExists) {
+        await UsersRepository().createUser(email: userEmail);
+        print("User created successfully!");
+      } else {
+        print("Email already exists in the database!");
+      }
+    }
+
+    checkAndCreateUser();
 
     return Scaffold(
       appBar: const AppBarWidget(

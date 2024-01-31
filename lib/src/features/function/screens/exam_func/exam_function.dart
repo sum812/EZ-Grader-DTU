@@ -26,7 +26,7 @@ class ExamFunction extends StatelessWidget {
               icon: Icons.question_answer_outlined,
               endIcon: false,
               onPress: () {
-                AddMultiple.buildShowModalBottomSheet(context);
+                AddMultiple.buildShowModalBottomSheet(context, exam);
               },
             ),
             const SizedBox(
