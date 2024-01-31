@@ -1,9 +1,10 @@
 class Answers {
+  final int? answer_id;
   final int user_id;
   final int exam_id;
   final int exam_type;
   final int exam_code;
-  final String multiple_answer;
+  final String? multiple_answer;
   final String? short_ques1;
   final String? short_ques2;
   final String? short_ques3;
@@ -16,11 +17,12 @@ class Answers {
   final String? short_ans5;
 
   Answers({
+    this.answer_id,
     required this.user_id,
     required this.exam_id,
     required this.exam_type,
     required this.exam_code,
-    required this.multiple_answer,
+    this.multiple_answer,
     this.short_ques1,
     this.short_ques2,
     this.short_ques3,
@@ -34,10 +36,11 @@ class Answers {
   });
 
   factory Answers.fromSqfliteDatabase(Map<String, dynamic> map) => Answers(
-      user_id: map['user_id']?.toInt() ?? 0,
-      exam_id: map['exam_id']?.toInt() ?? 0,
-      exam_type: map['exam_type']?.toInt() ?? 0,
-      exam_code: map['exam_code']?.toInt() ?? 0,
+      answer_id: map['answer_id']?.toInt() ?? -1,
+      user_id: map['user_id']?.toInt() ?? -1,
+      exam_id: map['exam_id']?.toInt() ?? -1,
+      exam_type: map['exam_type']?.toInt() ?? -1,
+      exam_code: map['exam_code']?.toInt() ?? -1,
       multiple_answer: map['multiple_answer'] ?? '',
       short_ques1: map['short_ques1'] ?? '',
       short_ques2: map['short_ques2'] ?? '',
@@ -54,6 +57,7 @@ class Answers {
   @override
   String toString() {
     return 'Answer('
+        '\nanswer_id: $answer_id,'
         '\nuser_id: $user_id,'
         '\nexam_id: $exam_id,'
         '\nexam_type: $exam_type,'

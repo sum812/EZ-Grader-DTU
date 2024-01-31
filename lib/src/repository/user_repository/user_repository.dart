@@ -4,8 +4,6 @@ import 'package:ez_grader/src/features/authentication/screens/splash_screen/spla
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../databases/repository/user_repository.dart';
-
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
@@ -18,10 +16,6 @@ class UserRepository extends GetxController {
       Get.offAll(() => SplashScreen());
       return;
     }
-
-    // add to local data
-    final userRepo = UsersRepository();
-    await userRepo.createUser(email: user.email);
 
     // add to firebase
     await _db

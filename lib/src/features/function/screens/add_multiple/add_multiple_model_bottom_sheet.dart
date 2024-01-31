@@ -1,13 +1,15 @@
 import 'package:ez_grader/src/constants/sizes.dart';
 import 'package:ez_grader/src/constants/text_string.dart';
-import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_email/forget_password_mail.dart';
-import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_options/forgot_password_btn_widget.dart';
-import 'package:ez_grader/src/features/authentication/screens/forget_password/forget_password_phone/forget_password_phone.dart';
+import 'package:ez_grader/src/features/function/screens/add_multiple_options/add_by_file.dart';
+import 'package:ez_grader/src/features/function/screens/add_multiple_options/add_manually.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddMultiple {
-  static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
+import '../../../../models/exams.dart';
+import 'add_multiple_btn_widget.dart';
+
+mixin AddMultiple {
+  static Future<dynamic> buildShowModalBottomSheet(BuildContext context, Exams exam) {
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
@@ -17,36 +19,47 @@ class AddMultiple {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              tForgetPasswordTitle,
+              tAddMultipleTitle,
               style: Theme.of(context).textTheme.displaySmall,
             ),
             Text(
-              tForgetPasswordSubTitle,
+              tAddMultipleSubTitle,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: tDefaultSize + 20,
             ),
-            ForgetPasswordBtnWidget(
+            AddMultipleBtnWidget(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(() => const ForgetPasswordMailScreen());
+                Get.to(() => const AddManually());
               },
-              btnIcon: Icons.email_outlined,
-              title: tEmail,
-              subTitle: tResetViaEmail,
+              btnIcon: Icons.back_hand_outlined,
+              title: tAddManually,
+              subTitle: tAddManuallyTitle,
             ),
             const SizedBox(
               height: tDefaultSize,
             ),
-            ForgetPasswordBtnWidget(
+            AddMultipleBtnWidget(
+              onTap: () async {
+                AddByFile.openFile(context, exam);
+              },
+              btnIcon: Icons.file_open_outlined,
+              title: tAddFile,
+              subTitle: tAddFileTitle,
+            ),
+            const SizedBox(
+              height: tDefaultSize,
+            ),
+            AddMultipleBtnWidget(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(() => const ForgetPasswordPhoneScreen());
+                Get.to(() => const Center(child: CircularProgressIndicator()));
               },
-              btnIcon: Icons.phone,
-              title: tPhoneNumber,
-              subTitle: tResetViaPhone,
+              btnIcon: Icons.history_edu,
+              title: tAllAnswer,
+              subTitle: tAllAnswerTitle,
             ),
           ],
         ),

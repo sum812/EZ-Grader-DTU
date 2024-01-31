@@ -9,8 +9,12 @@ class ExamRepository {
   Future<int> createExam({required int user_id, required String exam_name, required double score, required int exam_form, required int exam_type, required int exam_ques}) async {
     final database = await DatabaseService().database;
     return await database.rawInsert('''
-      INSERT INTO $tableExams (user_id, 
-      exam_name, exam_score, exam_form, exam_type, 
+      INSERT INTO $tableExams (
+      user_id, 
+      exam_name, 
+      exam_score, 
+      exam_form, 
+      exam_type, 
       num_of_questions) 
       VALUES (?, ?, ?, ?, ?, ?)
     ''', [user_id, exam_name, score, exam_form, exam_type, exam_ques]);
@@ -18,11 +22,10 @@ class ExamRepository {
 
   Future<List<Exams>> fetchAllExams({required int user_id}) async {
     final database = await DatabaseService().database;
-    final exams = await database.rawQuery(
-        '''
-      SELECT * FROM $tableExams WHERE user_id = ? ORDER BY created_at DESC
-    ''', [user_id]
-    );
+    final exams = await database.rawQuery('''
+      SELECT * FROM $tableExams WHERE user_id = ? 
+      ORDER BY created_at DESC
+    ''', [user_id]);
 
     return exams.map((exam) => Exams.fromSqfliteDatabase(exam)).toList();
   }
@@ -39,6 +42,19 @@ class ExamRepository {
     );
 
     return Sqflite.firstIntValue(result) == 1;
+  }
+
+  Future<int?> getExamQuestions(int exam_id) async {
+    final database = await DatabaseService().database;
+    final result = await database.rawQuery('''
+      SELECT num_of_questions FROM $tableExams WHERE exam_id = ?
+    ''', [exam_id]);
+
+    if (result.isNotEmpty) {
+      return result.first['num_of_questions'] as int;
+    } else {
+      return null;
+    }
   }
 
   Future<Exams?> fetchExamByName(String exam_name) async {
