@@ -53,55 +53,71 @@ class _ViewAllAnswerState extends State<ViewAllAnswer> {
                     itemBuilder: (context, index) {
                       final answer = answers[index];
                       return Padding(
-                          padding: const EdgeInsets.only(top: tDefaultSize, left: tDefaultSize / 2, right: tDefaultSize / 2),
-                          child: Container(
-                            height: 100,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Colors.grey.withOpacity(0.9),
-                                  Colors.black.withOpacity(0.7),
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 3),
-                                ),
+                        padding: const EdgeInsets.only(top: tDefaultSize, left: tDefaultSize / 2, right: tDefaultSize / 2),
+                        child: Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.black.withOpacity(0.8),
+                                Colors.black.withOpacity(0.5),
                               ],
                             ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Code',
-                                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 24, color: Colors.white),
-                                      ),
-                                      Text(
-                                        answer.exam_code.toString(),
-                                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.redAccent, size: 40,)),
-                                      IconButton(onPressed: () {}, icon: const Icon(Icons.build, color: Colors.greenAccent, size: 40,)),
-                                    ],
-                                  )
-                                ],
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 3),
                               ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Code',
+                                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 24, color: Colors.white),
+                                    ),
+                                    Text(
+                                      answer.exam_code.toString(),
+                                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          _showDeleteConfirmationDialog(answer, context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.redAccent,
+                                          size: 40,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+
+                                        },
+                                        icon: const Icon(
+                                          Icons.build,
+                                          color: Colors.greenAccent,
+                                          size: 40,
+                                        )),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
+                        ),
                       );
                     },
                   );
@@ -115,5 +131,41 @@ class _ViewAllAnswerState extends State<ViewAllAnswer> {
                 }
               }
             }));
+  }
+
+  Future<void> _showDeleteConfirmationDialog(Answers answer, BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(
+            'Delete code "${answer.exam_code}"?',
+            style: const TextStyle(fontSize: 24),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(fontSize: 22),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await AnswerRepository().deleteMultipleAnswer(answer: answer);
+                fetchAnswer();
+              },
+              child: const Text(
+                'Yes',
+                style: TextStyle(fontSize: 22),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
