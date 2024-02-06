@@ -20,8 +20,7 @@ class AddByFile {
     if (resultFile!.files.isNotEmpty) {
       if (resultFile.files.single.extension != 'xlsx') {
         showErrorSnackbar('File is not an xlsx file');
-      }
-      else {
+      } else {
         if (await readFileExcel(resultFile, exam)) {
           showSuccessSnackbar('Read file successfully🎉🎉🎉');
         }
@@ -64,14 +63,8 @@ class AddByFile {
             showErrorSnackbar('File with extra answers!');
             return false;
           } else {
-            Answers myAnswer = Answers(
-              user_id: exam.user_id,
-              exam_id: int.parse(exam.exam_id.toString()),
-              exam_code: int.parse(code),
-              exam_type: exam.exam_type,
-              multiple_answer: answer
-            );
-            if (await AnswerRepository().isExamCodeExists(answer: myAnswer)) {
+            Answers myAnswer = Answers(user_id: exam.user_id, exam_id: int.parse(exam.exam_id.toString()), exam_code: int.parse(code), exam_type: exam.exam_type, multiple_answer: answer);
+            if (await AnswerRepository().isExamCodeExists(user_id: myAnswer.user_id, exam_id: myAnswer.exam_id, exam_code: myAnswer.exam_code)) {
               await AnswerRepository().updateMultiple(answer: myAnswer);
             } else {
               await AnswerRepository().addMultipleAnswer(answer: myAnswer);

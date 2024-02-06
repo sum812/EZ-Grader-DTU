@@ -21,7 +21,7 @@ mixin AddMultiple {
           children: [
             Text(
               tAddMultipleTitle,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 30),
             ),
             Text(
               tAddMultipleSubTitle,
@@ -33,7 +33,7 @@ mixin AddMultiple {
             AddMultipleBtnWidget(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(() => const AddManually());
+                Get.to(() => AddManually(exam: exam,));
               },
               btnIcon: Icons.back_hand_outlined,
               title: tAddManually,

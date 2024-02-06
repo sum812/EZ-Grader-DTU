@@ -3,8 +3,7 @@ import 'package:ez_grader/src/repository/user_repository/user_repository.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  static ProfileController get instance =>
-      Get.find();
+  static ProfileController get to => Get.find();
 
   final _authRepo =
       Get.put(AuthenticationRepository());

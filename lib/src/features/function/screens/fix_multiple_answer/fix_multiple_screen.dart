@@ -1,28 +1,24 @@
-import 'package:ez_grader/src/constants/sizes.dart';
-import 'package:ez_grader/src/databases/repository/exam_repository.dart';
-import 'package:ez_grader/src/features/function/models/appbar.dart';
-import 'package:ez_grader/src/features/function/screens/add_multiple_options/validator/add_manually_validator.dart';
-import 'package:ez_grader/src/features/function/screens/add_multiple_options/view_all_answer.dart';
-import 'package:ez_grader/src/models/exams.dart';
+import 'package:ez_grader/src/models/answer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/sizes.dart';
 import '../../../../databases/repository/answer_repository.dart';
-import '../../../../models/answer.dart';
+import '../../../core/models/appbar.dart';
 import '../../models/radio_custom.dart';
 
-class AddManually extends StatefulWidget {
-  final Exams exam;
-
-  const AddManually({super.key, required this.exam});
+class FixMultipleScreen extends StatefulWidget {
+  final Answers answer;
+  const FixMultipleScreen({super.key, required this.answer});
 
   @override
-  State<AddManually> createState() => _AddManuallyState();
+  State<FixMultipleScreen> createState() => _FixMultipleScreenState();
 }
 
-class _AddManuallyState extends State<AddManually> {
-  int? numOfQues = 0;
-  Map<int, String?> selectedAnswers = {};
+class _FixMultipleScreenState extends State<FixMultipleScreen> {
+  late int? numOfQues;
+  late Map<int, String?> selectedAnswers;
+  Map<int, String?> updatedAnswers = {};
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _codeController = TextEditingController();
 
@@ -35,24 +31,37 @@ class _AddManuallyState extends State<AddManually> {
   @override
   void initState() {
     super.initState();
+    _codeController.text = widget.answer.exam_code.toString();
     fetchAnswer();
   }
 
   void fetchAnswer() async {
-    numOfQues = await ExamRepository().getExamQuestions(int.parse(widget.exam.exam_id.toString()));
+    numOfQues = widget.answer.multiple_answer?.length;
+    String? strMultipleAnswer = widget.answer.multiple_answer;
+
+    if (strMultipleAnswer != null && strMultipleAnswer.isNotEmpty && strMultipleAnswer.length == numOfQues) {
+      List<String> characterList = strMultipleAnswer.split('');
+      selectedAnswers = characterList.asMap();
+    }
+
+    if (numOfQues == null) {
+      print('Answer is empty!');
+    }
+
     setState(() {});
   }
 
   void _updateAnswer(int index, String? value) {
     setState(() {
-      selectedAnswers[index] = value;
+      updatedAnswers = Map.from(selectedAnswers);
+      updatedAnswers[index] = value;
+      selectedAnswers = updatedAnswers;
     });
   }
 
   Future<void> _showFinalResults() async {
-    if (_formKey.currentState!.validate()) {
-      String code = _codeController.text;
-
+    try {
+      print('List answer: $selectedAnswers');
       bool allQuestionsAnswered = selectedAnswers.length == numOfQues;
 
       if (allQuestionsAnswered) {
@@ -73,50 +82,19 @@ class _AddManuallyState extends State<AddManually> {
         }
 
         Answers myAnswer = Answers(
-            user_id: widget.exam.user_id,
-            exam_id: int.parse(widget.exam.exam_id.toString()),
-            exam_code: int.parse(code),
-            exam_type: widget.exam.exam_type,
+            user_id: widget.answer.user_id,
+            exam_id: int.parse(widget.answer.exam_id.toString()),
+            exam_code: widget.answer.exam_code,
+            exam_type: widget.answer.exam_type,
             multiple_answer: listAnswer
         );
 
-        if (await AnswerRepository().isExamCodeExists(
-            user_id: widget.exam.user_id,
-            exam_id: int.parse(widget.exam.exam_id.toString()),
-            exam_code: int.parse(code))) {
-          await AnswerRepository().updateMultiple(answer: myAnswer);
-        } else {
-          await AnswerRepository().addMultipleAnswer(answer: myAnswer);
-        }
+        await AnswerRepository().updateMultiple(answer: myAnswer);
 
-        Get.off(() => ViewAllAnswer(exam: widget.exam));
-      } else {
-        _showUnansweredQuestions();
+        Get.back();
       }
-    }
-  }
-
-  void _showUnansweredQuestions() {
-    List<int> unansweredQuestions = [];
-    for (int i = 0; i < numOfQues!; i++) {
-      if (!selectedAnswers.containsKey(i)) {
-        unansweredQuestions.add(i + 1);
-      }
-    }
-
-    if (unansweredQuestions.isNotEmpty) {
-      if (unansweredQuestions.length > 3) {
-        unansweredQuestions = unansweredQuestions.sublist(0, 3);
-      }
-      Get.snackbar(
-        'Warning',
-        'You have not selected enough: ${unansweredQuestions.join(', ')}',
-        snackPosition: SnackPosition.TOP,
-        duration: const Duration(seconds: 3),
-        backgroundColor: Colors.yellowAccent.withOpacity(.3),
-        colorText: Colors.yellowAccent,
-      );
-    } else {
+    } catch (error) {
+      print(error.toString());
     }
   }
 
@@ -126,7 +104,7 @@ class _AddManuallyState extends State<AddManually> {
 
     return Scaffold(
       appBar: const AppBarWidget(
-        title: 'Add Manually',
+        title: 'Change Multiple Answer',
       ),
       body: Form(
         key: _formKey,
@@ -137,10 +115,16 @@ class _AddManuallyState extends State<AddManually> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Code',
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+                  Opacity(
+                    opacity: 0.5,
+                    child: Text(
+                      'Code',
+                      textAlign: TextAlign.right,
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     width: 20,
@@ -148,9 +132,8 @@ class _AddManuallyState extends State<AddManually> {
                   SizedBox(
                     width: size.width * 0.3,
                     child: TextFormField(
+                      enabled: false,
                       controller: _codeController,
-                      validator: (value) => AddManuallyValidator().validateInput(value),
-                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.zero,
                         errorStyle: TextStyle(fontSize: 12.0, color: Colors.red),
@@ -239,7 +222,7 @@ class _AddManuallyState extends State<AddManually> {
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 100), backgroundColor: Colors.blueAccent.withOpacity(0.2), foregroundColor: Colors.blue, side: BorderSide.none),
                 child: const Text(
-                  'SAVE',
+                  'CHANGE',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -250,3 +233,4 @@ class _AddManuallyState extends State<AddManually> {
     );
   }
 }
+

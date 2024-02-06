@@ -50,7 +50,7 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
       appBar: const AppBarWidget(title: tListExamAppBar),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: ()  async {
+        onPressed: () async {
           try {
             await showDialog(
               context: context,
@@ -68,7 +68,9 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(color: Colors.red,),
+              child: CircularProgressIndicator(
+                color: Colors.red,
+              ),
             );
           } else {
             final exams = snapshot.data;
@@ -159,26 +161,34 @@ class _ListExamsScreenState extends State<ListExamsScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text('Delete exam "${exam.exam_name}"?', style: const TextStyle(fontSize: 24),),
+          content: Text(
+            'Delete exam "${exam.exam_name}"?',
+            style: const TextStyle(fontSize: 24),
+          ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 fetchExams();
               },
-              child: const Text('Cancel', style: TextStyle(fontSize: 22),),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(fontSize: 22),
+              ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 createExamController.deleteExam(exam.exam_id.toString(), context);
               },
-              child: const Text('Yes', style:  TextStyle(fontSize: 22),),
+              child: const Text(
+                'Yes',
+                style: TextStyle(fontSize: 22),
+              ),
             ),
           ],
         );
       },
     );
   }
-
 }

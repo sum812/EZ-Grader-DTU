@@ -71,12 +71,12 @@ class AnswerRepository {
     ]);
   }
 
-  Future<bool> isExamCodeExists({required Answers answer}) async {
+  Future<bool> isExamCodeExists({required int user_id, required int exam_id, required int exam_code}) async {
     final database = await DatabaseService().database;
 
     final result = await database.rawQuery('''
       SELECT COUNT(*) FROM $tableAnswer WHERE user_id = ? AND exam_id = ? AND exam_code = ?
-    ''', [answer.user_id, answer.exam_id, answer.exam_code]);
+    ''', [user_id, exam_id, exam_code]);
 
     final count = Sqflite.firstIntValue(result) ?? 0;
 
@@ -101,10 +101,10 @@ class AnswerRepository {
       ''');
   }
 
-  Future<void> deleteMultiple({required Answers answer}) async {
-    final database = await DatabaseService().database;
-    await database.rawDelete('''
-        DELETE FROM $tableAnswer WHERE answer_id = ? AND user_id = ? AND exam_id = ? AND exam_code = ?
-      ''', [answer.answer_id, answer.user_id, answer.exam_id, answer.exam_code]);
+  Future<void> deleteMultipleAnswer({required Answers answer}) async {
+    final databases = await DatabaseService().database;
+    await databases.rawDelete('''
+        DELETE FROM $tableAnswer WHERE answer_id = ? AND exam_id = ? AND exam_code = ?
+    ''', [answer.answer_id, answer.exam_id, answer.exam_code]);
   }
 }
