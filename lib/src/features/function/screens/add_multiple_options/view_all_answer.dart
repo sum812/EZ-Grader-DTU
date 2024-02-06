@@ -1,6 +1,8 @@
 import 'package:ez_grader/src/databases/repository/answer_repository.dart';
+import 'package:ez_grader/src/features/function/screens/fix_multiple_answer/fix_multiple_screen.dart';
 import 'package:ez_grader/src/models/answer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../../../models/exams.dart';
@@ -29,6 +31,42 @@ class _ViewAllAnswerState extends State<ViewAllAnswer> {
     setState(() {
       futureAnswers = answerRepo.fetchAllAnswer(user_id: widget.exam.user_id, exam_id: int.parse(widget.exam.exam_id.toString()));
     });
+  }
+
+  Future<void> _showDeleteConfirmationDialog(Answers answer, BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(
+            'Delete code "${answer.exam_code}"?',
+            style: const TextStyle(fontSize: 24),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(fontSize: 22),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await AnswerRepository().deleteMultipleAnswer(answer: answer);
+                fetchAnswer();
+              },
+              child: const Text(
+                'Yes',
+                style: TextStyle(fontSize: 22),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -105,12 +143,14 @@ class _ViewAllAnswerState extends State<ViewAllAnswer> {
                                         )),
                                     IconButton(
                                         onPressed: () {
-
+                                          Get.to(() => FixMultipleScreen(
+                                                answer: answer,
+                                              ));
                                         },
                                         icon: const Icon(
                                           Icons.build,
                                           color: Colors.greenAccent,
-                                          size: 40,
+                                          size: 35,
                                         )),
                                   ],
                                 )
@@ -131,41 +171,5 @@ class _ViewAllAnswerState extends State<ViewAllAnswer> {
                 }
               }
             }));
-  }
-
-  Future<void> _showDeleteConfirmationDialog(Answers answer, BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(
-            'Delete code "${answer.exam_code}"?',
-            style: const TextStyle(fontSize: 24),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(fontSize: 22),
-              ),
-            ),
-            TextButton(
-              onPressed: () async {
-                Navigator.of(context).pop();
-                await AnswerRepository().deleteMultipleAnswer(answer: answer);
-                fetchAnswer();
-              },
-              child: const Text(
-                'Yes',
-                style: TextStyle(fontSize: 22),
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 }
